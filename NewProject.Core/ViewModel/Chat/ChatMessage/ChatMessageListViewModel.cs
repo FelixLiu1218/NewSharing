@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Windows.Input;
 
 namespace NewProject.Core
@@ -15,7 +18,7 @@ namespace NewProject.Core
         /// <summary>
         /// the chat thread items for the list
         /// </summary>
-        public List<ChatMessageListItemViewModel> Items { get; set; }
+        public ObservableCollection<ChatMessageListItemViewModel> Items { get; set; }
 
         /// <summary>
         /// True to show the attachment menu,false to hide
@@ -28,6 +31,11 @@ namespace NewProject.Core
         /// the view model for the attachment menu
         /// </summary>
         public ChatAttachmentPopupMenuViewModel AttachmentMenu { get; set; }
+
+        /// <summary>
+        /// The text for the current message
+        /// </summary>
+        public string PendingMessageText { get; set; }
 
         #endregion
 
@@ -82,12 +90,20 @@ namespace NewProject.Core
 
         public void Send()
         {
-            IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+            if (Items == null)
+                Items = new ObservableCollection<ChatMessageListItemViewModel>();
+
+            Items.Add(new ChatMessageListItemDesignModel
             {
-                Title = "Send Message",
-                Message = "Thank you for writing a nice message",
-                OKText = "OK"
+                Initials = "FL",
+                Message = PendingMessageText,
+                SenderName = "Felix Liu",
+                SentByMe = true,
+                NewOne = true,
             });
+
+            //Clean the pending message
+            PendingMessageText = String.Empty;
 
         }
 

@@ -46,8 +46,8 @@ namespace NewProject
 
                 // Start off hidden before we decide how to animate
                 // if we are to be animated out initially
-                if (!(bool)value)
-                    element.Visibility = Visibility.Hidden;
+                //if (!(bool)value)
+                element.Visibility = Visibility.Hidden;
 
                 // Create a single self-unhookable event 
                 // for the elements Loaded event
@@ -118,6 +118,19 @@ namespace NewProject
             else
                 // Animate out
                 await element.SlideAndFadeOut(AnimationSlideInDirection.Bottom, firstLoad ? 0 : 0.3f, keepMargin: false);
+        }
+    }
+
+    /// <summary>
+    /// Animates a framework element sliding up from the bottom on show
+    /// and sliding out to the bottom on hide
+    /// </summary>
+    public class MessageAnimateSlideInFromBottomProperty : AnimateBaseProperty<MessageAnimateSlideInFromBottomProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value, bool firstLoad)
+        {
+            // Animate In
+            await element.SlideAndFadeIn(AnimationSlideInDirection.Bottom, !value, !value ? 0 : 0.3f, keepMargin: true);
         }
     }
 

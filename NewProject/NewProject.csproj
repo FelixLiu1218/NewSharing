@@ -122,7 +122,7 @@
     <Compile Include="Animation\StoryBoardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\MonitorTextProperty.cs" />
-    <Compile Include="AttachedProperties\ScrollToBottomOnLoadProperty.cs" />
+    <Compile Include="AttachedProperties\ScrollViewerProperty.cs" />
     <Compile Include="AttachedProperties\TextEntryWidthProperty.cs" />
     <Compile Include="AttachedProperties\PanelChildMarginProperty.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />

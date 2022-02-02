@@ -5,6 +5,7 @@ using System.Windows;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Security;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 using NewProject.Core;
 
@@ -42,5 +43,35 @@ namespace NewProject
         
 
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MessageText_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var textbox = sender as TextBox;
+
+            if (e.Key == Key.Enter)
+            {
+                if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+                {
+                    var index = textbox.CaretIndex;
+
+                    textbox.Text = textbox.Text.Insert(index, Environment.NewLine);
+
+                    textbox.CaretIndex = index + Environment.NewLine.Length;
+
+                    e.Handled = true;
+                }
+                else
+                {
+                    ViewModel.Send();
+                }
+
+                e.Handled = true;
+            }
+        }
     }
 }

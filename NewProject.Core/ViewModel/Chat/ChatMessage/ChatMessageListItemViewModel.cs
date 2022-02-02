@@ -22,5 +22,8 @@
         //True if the message was sent by myself
         public bool SentByMe { get; set; }
 
+        //True if this thing is a new one
+        public bool NewOne { get; set; }
+
     }
 }

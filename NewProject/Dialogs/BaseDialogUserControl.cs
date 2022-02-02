@@ -84,6 +84,12 @@ namespace NewProject
                     //Setup this controls data context binding to the view model
                     DataContext = viewModel;
 
+                    //create the owner
+                    _dialogWindow.Owner = Application.Current.MainWindow;
+
+                    //Show in the center of the parent
+                    _dialogWindow.WindowStartupLocation  = WindowStartupLocation.CenterOwner;
+
                     //show dialog
                     _dialogWindow.ShowDialog();
                 }

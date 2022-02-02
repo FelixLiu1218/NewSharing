@@ -29,4 +29,32 @@ namespace NewProject
             (sender as ScrollViewer).ScrollToBottom();
         }
     }
+
+    /// <summary>
+    /// keep scroll to bottom when something were created
+    /// </summary>
+    public class ScrollToBottomProperty : BaseAttachedProperty<ScrollToBottomProperty, bool>
+    {
+        public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (DesignerProperties.GetIsInDesignMode(sender))
+                return;
+
+            // If we don't have a control, return
+            if (!(sender is ScrollViewer control))
+                return;
+
+            // Scroll content to bottom
+            control.ScrollChanged -= Control_ScrollChanged;
+            control.ScrollChanged += Control_ScrollChanged;
+        }
+
+        private void Control_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var scroll = sender as ScrollViewer;
+
+            if(scroll.ScrollableHeight- scroll.VerticalOffset < 20)
+                scroll.ScrollToBottom();
+        }
+    }
 }

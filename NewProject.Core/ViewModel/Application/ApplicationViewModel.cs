@@ -38,8 +38,6 @@ namespace NewProject.Core
             //set the view model
             CurrentPageViewModel = viewModel;
 
-            
-
             //set the current page
             CurrentPage = page;
 
