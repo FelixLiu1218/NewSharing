@@ -1,0 +1,58 @@
+﻿<Window x:Class="NewProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewProject"
+        xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
+        mc:Ignorable="d"
+        MinWidth="750"
+        MinHeight="600"
+        Deactivated="MainWindow_OnDeactivated"
+        Activated="MainWindow_OnActivated"
+        WindowStartupLocation="CenterScreen"
+        Title="Sharing" Height="600" Width="800">
+
+
+
+    <Border BorderThickness=" 0 0.4 0 0" BorderBrush="{StaticResource ForegroundDarkBrush}">
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- Settings Page -->
+            <local:SettingsControl Grid.ColumnSpan="2"
+                                   Panel.ZIndex="9"
+                                   local:AnimateSlideInFromBottomProperty.Value="{Binding ApplicationViewModel.SettingsMenuVisible,Source={x:Static local:ViewModelLocator.Instance}}"
+                                   />
+
+            <!-- Dimmed Overlay -->
+            <Border Grid.ColumnSpan="2"
+                    Panel.ZIndex="9"
+                    Opacity="0.3">
+                <Border Background="{StaticResource ForegroundVeryDarkBrush}"
+                        local:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}"
+                        />
+
+            </Border>
+
+            <local:PageHost Grid.Column="1" 
+                            CurrentPage="{Binding ApplicationViewModel.CurrentPage,
+                Source={x:Static local:ViewModelLocator.Instance}}"
+                            CurrentPageViewModel="{Binding ApplicationViewModel.CurrentPageViewModel,
+                Source={x:Static local:ViewModelLocator.Instance}}"/>
+
+            <local:SideMenuControl Grid.Column="0" 
+                                   Width="225"
+                                   local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible,
+                            Source={x:Static local:ViewModelLocator.Instance}}">
+                <local:ChatListControl  />
+            </local:SideMenuControl>
+
+        </Grid>
+    </Border>
+
+</Window>
