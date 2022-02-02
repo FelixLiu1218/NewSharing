@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="NewProject.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewProject"
+             xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
+             mc:Ignorable="d"
+             d:DataContext="{x:Static core:SettingsDesignModel.Instance}">
+    <Border Background="{StaticResource ForegroundLightBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Settings Title -->
+            <Grid Height="70" Margin="0 10 0 25">
+
+                <!-- Close Button -->
+                <Button 
+                    Margin="0 20 20 0"
+                    Command="{Binding CloseCommand}"
+                    FontSize="{StaticResource FontSizeXXXXLarge}"
+                    Style="{StaticResource IconGrowButton}"
+                    Content="{StaticResource FontAwesomeClose}"
+                    HorizontalAlignment="Right"/>
+
+                <TextBlock Margin="0 20 0 0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
+
+                    <!-- Cog Icon -->
+                    <Run FontFamily="{StaticResource FontAwesome}"
+                         FontSize="{StaticResource FontSizeXLarge}"
+                         Text="{StaticResource FontAwesomeSettings}"
+                         Foreground="{StaticResource WordOrangeBrush}" />
+
+                    <!-- Text -->
+                    <Run Text=" Settings"
+                         FontFamily="{StaticResource Arial}"
+                         FontSize="{StaticResource FontSizeXXLarge}"
+                         Foreground="{StaticResource  ForegroundVeryDarkBrush}" />
+                </TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Width="700"
+                  VerticalAlignment="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Picture -->
+                <Border CornerRadius="8"
+                        Margin="0 0 10 0"
+                        Height="{Binding ActualWidth,RelativeSource={RelativeSource Self}}">
+                    <Border.Background>
+                        <ImageBrush ImageSource="/Images/yume.jpg" Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+
+                <!-- Profile -->
+                <StackPanel Grid.Column="1"
+                            local:TextEntryWidthProperty.Value="True">
+
+                    <local:TextEntryControl DataContext="{Binding Name}"/>
+                    <local:TextEntryControl DataContext="{Binding Username}"/>
+                    <local:PasswordEntryControl DataContext="{Binding Password}"/>
+                    <local:TextEntryControl DataContext="{Binding Email}"/>
+
+                    <Button Content="{Binding LogoutButtonText}"
+                            Command="{Binding LogoutCommand}"
+                    />
+                </StackPanel>
+
+            </Grid>
+
+            
+        </Grid>
+    </Border>
+    
+</UserControl>

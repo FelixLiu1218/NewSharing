@@ -1,0 +1,70 @@
+﻿<local:BasePage x:TypeArguments="core:LoginViewModel" x:Class="NewProject.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NewProject"
+      xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
+      x:Name="Page"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="700">
+
+
+    <Border Background="{StaticResource WordBlueBrush}">
+        <Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            TextBlock.TextAlignment="Center">
+                    <Border Background="{StaticResource ForegroundLightBrush}"
+                            CornerRadius="10"
+                            Padding="15 50 15 15"
+                            Width="400"
+                            Margin="50 50 50 0">
+
+                        <StackPanel>
+                            <TextBlock Text="Sign In" FontSize="{StaticResource FontSizeXXXXLarge}"
+                                   FontFamily="{StaticResource Arial}"
+                                   Foreground="{StaticResource WordBlueBrush}"/>
+
+
+                            <TextBlock Text="Email Address" Margin="0 20 0 0"
+                                       FontSize="{StaticResource FontSizeLarge}"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
+
+                            <TextBox Tag="Email"
+                                     Style="{StaticResource EmailTextBox}"
+                                     Text="{Binding Email}"/>
+
+                            <TextBlock Text="Password" Margin="0 20 0 0"
+                                       FontSize="{StaticResource FontSizeLarge}"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
+
+                            <PasswordBox 
+                                x:Name="PasswordText"/>
+
+                            <TextBlock Text="8-16文字を入力してください"
+                                       Foreground="{StaticResource ForegroundDarkBrush}" />
+
+
+                            <Button 
+                                    Content="Login"
+                                    IsDefault="True"
+                                    local:IsBusyProperty.Value ="{Binding LoginIsRunning}"
+                                    HorizontalAlignment="Center" 
+                                    Command="{Binding LoginCommand}"
+                                    CommandParameter="{Binding ElementName=Page}"
+                                    Margin="0 20 0 20"/>
+                        </StackPanel>
+
+                    </Border>
+
+                    <Button Style="{StaticResource TextButton}"
+                            Command="{Binding RegisterCommand}"
+                            Content="Create an account"
+                            HorizontalAlignment="Center"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</local:BasePage>

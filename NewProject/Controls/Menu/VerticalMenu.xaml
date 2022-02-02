@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="NewProject.VerticalMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewProject"
+             xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
+             mc:Ignorable="d" 
+             >
+    <ItemsControl d:DataContext="{x:Static core:MenuDesignModel.Instance}"
+                  ItemsSource="{Binding Items}"
+                  Background="white">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+
+                <Grid>
+
+                    <!-- Header -->
+                    <Grid Visibility="{Binding Type,Converter={local:MenuItemTypeVisiblityConverter},ConverterParameter=Header}">
+                        <!-- Header Line -->
+                        <Border Height="0.5" Background="{StaticResource ForegroundDarkBrush}"/>
+
+                        <!-- Header Text -->
+                        <TextBlock Text="{Binding Text}"
+                                   FontFamily="{StaticResource Arial}"
+                                   FontSize="{StaticResource FontSizeSmall}"
+                                   Padding="0 5 10 5"
+                                   Background="{StaticResource ForegroundLightBrush}"
+                                   Foreground="{StaticResource ForegroundDarkBrush}"
+                                   HorizontalAlignment="Left"/>
+
+                        
+
+                    </Grid>
+
+                    <!-- Menu Item -->
+                    <Border Background="{StaticResource ForegroundLightBrush}"
+                            CornerRadius="8"
+                            Padding="5"
+                            Visibility="{Binding Type,Converter={local:MenuItemTypeVisiblityConverter},ConverterParameter=TextAndIcon}">
+
+                        <Border.Triggers>
+                             <EventTrigger RoutedEvent="MouseEnter">
+                                 <BeginStoryboard>
+                                     <Storyboard>
+                                         <ColorAnimation To="{StaticResource BackgroundLight}"
+                                                         Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="Background.Color"/>
+                                         <ColorAnimation To="Black" 
+                                                         Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="Foreground.Color"
+                                                         Storyboard.TargetName="Text"/>
+                                    </Storyboard>
+                                 </BeginStoryboard>
+                             </EventTrigger>
+
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation From="{StaticResource BackgroundLight}" 
+                                                        Duration="0:0:0.05" 
+                                                        Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation From="Black" 
+                                                        Duration="0:0:0.2" 
+                                                        Storyboard.TargetProperty="Foreground.Color"
+                                                        Storyboard.TargetName="Text"/>
+
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Border.Triggers>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <!-- Icon -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Text -->
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            
+
+                            <!-- Text -->
+                            <TextBlock Name="Text"
+                                     Grid.Column="1"
+                                     Margin="5 0 5 0"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Text="{Binding Text}"
+                                     FontFamily="{StaticResource Arial}"
+                                     Foreground="{StaticResource ForegroundDarkBrush}"
+                            />
+                        </Grid>
+
+                    </Border>
+                </Grid>
+                
+
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>
