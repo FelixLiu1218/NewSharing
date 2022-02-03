@@ -101,6 +101,19 @@ namespace NewProject.Core
                         SenderName = "Helen",
                         SentByMe = false,
                     },
+                    new ChatMessageListItemViewModel
+                    {
+                        Message = "I'm glad to see you again",
+                        ImageAttachment = new ChatMessageListItemimageViewModel
+                        {
+                            ThumbnailUrl = "http",
+
+                        },
+                        Initials = Initials,
+                        ProfilePictureRGB = "FF00FF",
+                        SenderName = "Helen",
+                        SentByMe = false,
+                    },
                 }
             });
         }

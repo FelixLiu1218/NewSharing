@@ -25,5 +25,13 @@
         //True if this thing is a new one
         public bool NewOne { get; set; }
 
+        /// <summary>
+        /// The attachment to the message , if it's image type
+        /// </summary>
+        public ChatMessageListItemimageViewModel ImageAttachment { get; set; }
+
+        public bool HasMessage => Message != null;
+
+        public bool HasImage => ImageAttachment != null;
     }
 }
