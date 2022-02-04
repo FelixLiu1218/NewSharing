@@ -5,6 +5,9 @@ using System.Windows.Controls;
 
 namespace NewProject
 {
+    /// <summary>
+    /// Monitor password,if password is null,makes the tag to visible 
+    /// </summary>
     public class MonitorPasswordProperty : BaseAttachedProperty<MonitorPasswordProperty, bool>
     {
         public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -29,6 +32,9 @@ namespace NewProject
         }
     }
 
+    /// <summary>
+    /// Monitor textBox,if textBox is null,makes the text to visible 
+    /// </summary>
     public class MonitorTextProperty : BaseAttachedProperty<MonitorTextProperty, bool>
     {
         public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)

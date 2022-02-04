@@ -1,6 +1,6 @@
 ﻿namespace NewProject
 {
-    public enum AnimationSlideInDirection
+    public enum AnimationInDirection
     {
         /// <summary>
         /// Slide in from the left

@@ -1,11 +1,9 @@
 ﻿namespace NewProject
 {
-    public enum PageAnimation
+    public enum Animation
     {
         None = 0,
         SlideAndFadeInFromRight = 1,
         SlideAndFadeOutToLeft =2,
-
-
     }
 }

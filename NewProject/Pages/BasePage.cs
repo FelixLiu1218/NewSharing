@@ -23,9 +23,9 @@ namespace NewProject
 
         #region Public Properties
 
-        public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
+        public Animation PageLoadAnimation { get; set; } = Animation.SlideAndFadeInFromRight;
 
-        public PageAnimation PageUnloadAnimation { get; set; } = PageAnimation.SlideAndFadeOutToLeft;
+        public Animation PageUnloadAnimation { get; set; } = Animation.SlideAndFadeOutToLeft;
 
         public float SlideSeconds { get; set; } = 0.55f;
 
@@ -65,7 +65,7 @@ namespace NewProject
             if (DesignerProperties.GetIsInDesignMode(this)) return;
 
 
-            if (PageLoadAnimation != PageAnimation.None)
+            if (PageLoadAnimation != Animation.None)
             {
                 Visibility = Visibility.Collapsed;
             }
@@ -82,14 +82,14 @@ namespace NewProject
 
         public async Task AnimateIn()
         {
-            if (PageLoadAnimation == PageAnimation.None) return;
+            if (PageLoadAnimation == Animation.None) return;
 
             switch (PageLoadAnimation)
             {
-                case PageAnimation.SlideAndFadeInFromRight:
+                case Animation.SlideAndFadeInFromRight:
 
                     //Start the animation
-                    await this.SlideAndFadeIn(AnimationSlideInDirection.Right, false, SlideSeconds, size: (int)Application.Current.MainWindow.Width);
+                    await this.SlideFadeIn(AnimationInDirection.Right, false, SlideSeconds, size: (int)Application.Current.MainWindow.Width);
 
                     break;
                 default:
@@ -114,14 +114,14 @@ namespace NewProject
 
         public async Task AnimateOut()
         {
-            if (PageUnloadAnimation == PageAnimation.None) return;
+            if (PageUnloadAnimation == Animation.None) return;
 
             switch (PageUnloadAnimation)
             {
-                case PageAnimation.SlideAndFadeOutToLeft:
+                case Animation.SlideAndFadeOutToLeft:
 
                     //Start the animation
-                    await this.SlideAndFadeOut(AnimationSlideInDirection.Left, SlideSeconds);
+                    await this.SlideFadeOut(AnimationInDirection.Left, SlideSeconds);
 
                     break;
             }

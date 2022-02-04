@@ -115,13 +115,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Animation\AnimationSlideInDirection.cs" />
-    <Compile Include="Animation\PageAnimation.cs" />
+    <Compile Include="Animation\AnimationInDirection.cs" />
+    <Compile Include="Animation\Animation.cs" />
     <Compile Include="Animation\FrameworkElementAnimations.cs" />
     <Compile Include="Animation\PageAnimations.cs" />
     <Compile Include="Animation\StoryBoardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\MonitorTextProperty.cs" />
+    <Compile Include="AttachedProperties\BorderAttachedProperties.cs" />
     <Compile Include="AttachedProperties\ScrollViewerProperty.cs" />
     <Compile Include="AttachedProperties\TextEntryWidthProperty.cs" />
     <Compile Include="AttachedProperties\PanelChildMarginProperty.cs" />
@@ -181,6 +182,7 @@
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\BooleanInvertConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToCollapsedConverter.cs" />
     <Compile Include="ValueConverters\MenuItemTypeVisiblityConverter.cs" />
     <Compile Include="ValueConverters\PopupContentConverter.cs" />
     <Compile Include="ValueConverters\HorizontalAlignmentConverter.cs" />

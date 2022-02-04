@@ -1,4 +1,6 @@
-﻿namespace NewProject.Core
+﻿using System.Threading.Tasks;
+
+namespace NewProject.Core
 {
     /// <summary>
     /// a view model for chat message thread picture  in a chat thread
@@ -46,7 +48,7 @@
 
                 //TODO
 
-                LocalFilePath = "/Images/yume.jpg";
+                Task.Delay(2000).ContinueWith( t => LocalFilePath = "/Images/yume.jpg");
             }
         }
 
@@ -54,5 +56,10 @@
         /// The local file path of downloaded thumbnail
         /// </summary>
         public string LocalFilePath { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ImageLoaded => LocalFilePath != null;
     }
 }
