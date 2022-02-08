@@ -53,20 +53,27 @@ namespace NewProject
         {
             var textbox = sender as TextBox;
 
+            //If pressed enter key
             if (e.Key == Key.Enter)
             {
+                //Check if control key pressed
                 if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
                 {
+                    // Add a new line 
                     var index = textbox.CaretIndex;
 
+                    //Insert new line
                     textbox.Text = textbox.Text.Insert(index, Environment.NewLine);
 
+                    //Shift the caret forward to the next line
                     textbox.CaretIndex = index + Environment.NewLine.Length;
 
+                    //Mark this key as handled
                     e.Handled = true;
                 }
                 else
                 {
+                    //if pressed enter key ,then send the message
                     ViewModel.Send();
                 }
 

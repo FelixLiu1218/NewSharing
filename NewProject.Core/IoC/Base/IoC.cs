@@ -27,6 +27,21 @@ namespace NewProject.Core
         public static IUIManager UI => IoC.Get<IUIManager>();
 
         /// <summary>
+        /// a shortcut to access the <see cref="ILogFactory"/>
+        /// </summary>
+        public static ILogFactory Logger => IoC.Get<ILogFactory>();
+
+        /// <summary>
+        /// a shortcut to access the <see cref="IFileManager"/>
+        /// </summary>
+        public static IFileManager File => IoC.Get<IFileManager>();
+
+        /// <summary>
+        /// a shortcut to access the <see cref="ITaskManager"/>
+        /// </summary>
+        public static ITaskManager Task => IoC.Get<ITaskManager>();
+
+        /// <summary>
         /// a shortcut to access the <see cref="SettingsViewModel"/>
         /// </summary>
         public static SettingsViewModel Settings => IoC.Get<SettingsViewModel>();

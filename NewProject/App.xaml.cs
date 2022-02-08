@@ -26,6 +26,9 @@ namespace NewProject
             //setup the main application
             ApplicationSetup();
 
+            //Log it
+            IoC.Logger.Log("Application starting up", LogLevel.Debug);
+
             //show the main window
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
@@ -41,6 +44,19 @@ namespace NewProject
 
             //Bind a ui manager
             IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
+
+            //Bind a logger
+            IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory(new []
+            {
+                new FileLogger("log.text")
+            }));
+
+            //Bind a file manager
+            IoC.Kernel.Bind<IFileManager>().ToConstant(new FileManager());
+
+            //Bind a file manager
+            IoC.Kernel.Bind<ITaskManager>().ToConstant(new TaskManager());
+
         }
     }
 }

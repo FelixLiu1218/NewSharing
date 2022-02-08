@@ -3,7 +3,7 @@
     /// <summary>
     /// The severity of log message
     /// </summary>
-    public enum LogFactoryLevel
+    public enum LogOutputLevel
     {
         /// <summary>
         /// Logs everything
@@ -21,18 +21,13 @@
         Informative =3,
 
         /// <summary>
-        /// Logs warnings,errors,standard messages
+        /// Logs Critical errors, warnings and success
         /// </summary>
-        Normal = 4,
-
-        /// <summary>
-        /// Logs Critical errors and warnings
-        /// </summary>
-        Critical= 5,
+        Critical= 4,
 
         /// <summary>
         /// Output nothing
         /// </summary>
-        Empty = 6,
+        Empty = 7,
     }
 }

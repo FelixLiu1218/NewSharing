@@ -16,6 +16,6 @@ namespace NewProject.Core
         /// </summary>
         /// <param name="message"></param>
         /// <param name="level"></param>
-        void Log(string message, LogFactoryLevel level);
+        void Log(string message, LogLevel level);
     }
 }
