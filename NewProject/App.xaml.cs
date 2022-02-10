@@ -5,7 +5,10 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Dna;
 using NewProject.Core;
+using Relational;
+
 
 namespace NewProject
 {
@@ -18,13 +21,13 @@ namespace NewProject
         /// custom startup so we load our ioc immediately before anything else
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             //let the base application do what it needs
             base.OnStartup(e);
 
             //setup the main application
-            ApplicationSetup();
+            await ApplicationSetup();
 
             //Log it
             IoC.Logger.Log("Application starting up", LogLevel.Debug);
@@ -38,8 +41,13 @@ namespace NewProject
         /// Configures the application ready for use
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        private void ApplicationSetup()
+        private async Task ApplicationSetup()
         {
+            Framework.Construct<DefaultFrameworkConstruction>()
+                .AddFileLogger()
+                .AddClientDataStore()
+                .Build();
+
             IoC.Setup();
 
             //Bind a ui manager
@@ -48,15 +56,17 @@ namespace NewProject
             //Bind a logger
             IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory(new []
             {
-                new FileLogger("log.text")
+                new Core.FileLogger("log.text")
             }));
 
             //Bind a file manager
-            IoC.Kernel.Bind<IFileManager>().ToConstant(new FileManager());
+            IoC.Kernel.Bind<IFileManager>().ToConstant(new BaseFileManager());
 
             //Bind a file manager
-            IoC.Kernel.Bind<ITaskManager>().ToConstant(new TaskManager());
+            IoC.Kernel.Bind<ITaskManager>().ToConstant(new BaseTaskManager());
 
+            //Ensure the client data store 
+            await IoC.ClientDataStore.EnsureDataStore();
         }
     }
 }

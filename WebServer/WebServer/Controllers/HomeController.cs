@@ -69,11 +69,11 @@ namespace WebServer
         {
             var result = await mUserManager.CreateAsync(new ApplicationUser
             {
-                UserName = "angelsix",
-                Email = "contact@angelsix.com",
-                FirstName = "Luke",
-                LastName = "Malpass"
-            }, "password");
+                UserName = "Felix",
+                Email = "pengfeiliu1218@gmail.com",
+                FirstName = "Felix",
+                LastName = "Liu"
+            }, "80211394");
 
             if (result.Succeeded)
                 return Content("User was created", "text/html");
@@ -104,7 +104,7 @@ namespace WebServer
             await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
 
             // Sign user in with the valid credentials
-            var result = await mSignInManager.PasswordSignInAsync("angelsix", "password", true, false);
+            var result = await mSignInManager.PasswordSignInAsync("Felix", "80211394", true, false);
 
             // If successful...
             if (result.Succeeded)

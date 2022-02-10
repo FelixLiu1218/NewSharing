@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dna;
 using Ninject;
 
 namespace NewProject.Core
@@ -46,6 +47,10 @@ namespace NewProject.Core
         /// </summary>
         public static SettingsViewModel Settings => IoC.Get<SettingsViewModel>();
 
+        /// <summary>
+        /// a shortcut to access the <see cref="IClientDataStore"/>
+        /// </summary>
+        public static IClientDataStore ClientDataStore => Framework.Service<IClientDataStore>();
         #endregion
 
 
