@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NewProject"
              xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
              mc:Ignorable="d"
-             d:DataContext="{x:Static core:SettingsDesignModel.Instance}">
+             d:DataContext="{x:Static local:SettingsDesignModel.Instance}">
     <Border Background="{StaticResource ForegroundLightBrush}">
         <Grid>
             <Grid.RowDefinitions>

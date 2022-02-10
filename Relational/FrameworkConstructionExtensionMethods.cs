@@ -1,5 +1,4 @@
 ﻿using Dna;
-using Dna;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,12 +16,12 @@ namespace Relational
             construction.Services.AddDbContext<ClientDataStoreDbContext>(options =>
             {
                 //Setup connection string
-                //we can change sql server by this line
+                //we can change to sql server by this line
                 options.UseSqlite(construction.Configuration.GetConnectionString("ClientDataStoreConnection"));
             }, contextLifetime: ServiceLifetime.Transient);
 
-            construction.Services.AddScoped<IClientDataStore>(provider =>
-                new BaseClientDataStore(provider.GetService<ClientDataStoreDbContext>()));
+            construction.Services.AddTransient<IClientDataStore>(
+                provider => new BaseClientDataStore(provider.GetService<ClientDataStoreDbContext>()));
 
             return construction;
         }

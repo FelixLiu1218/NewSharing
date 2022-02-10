@@ -62,7 +62,7 @@ namespace NewProject
         /// <param name="seconds">the time the animation will take</param>
         /// <param name="offset">the distance to the right to start from</param>
         /// <param name="decelerationRatio"></param>
-        public static void AddFadeIn(this Storyboard storyboard, float seconds)
+        public static void AddFadeIn(this Storyboard storyboard, float seconds, bool from =false)
         {
             var animation = new DoubleAnimation
             {

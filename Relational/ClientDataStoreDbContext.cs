@@ -22,7 +22,7 @@ namespace Relational
 
         #endregion
 
-        public ClientDataStoreDbContext(DbContextOptions<ClientDataStoreDbContext> options) : base(options){ }
+        public ClientDataStoreDbContext(DbContextOptions<ClientDataStoreDbContext> options) : base(options) {}
 
         #region Model Creating
 

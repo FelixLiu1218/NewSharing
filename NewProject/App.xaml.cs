@@ -6,9 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Dna;
+using Microsoft.Extensions.Logging;
 using NewProject.Core;
 using Relational;
-
+using static Dna.FrameworkDI;
+using static NewProject.DI;
+using static NewProject.Core.CoreDI;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace NewProject
 {
@@ -30,7 +34,16 @@ namespace NewProject
             await ApplicationSetup();
 
             //Log it
-            IoC.Logger.Log("Application starting up", LogLevel.Debug);
+            Logger.LogDebugSource("Application starting up");
+
+            // Setup the application view model based on if we are logged in
+            ViewModelApplication.GoToPage(
+                // If we are logged in...
+                await ClientDataStore.HasCredentials() ?
+                    // Go to chat page
+                    ApplicationPage.Chat :
+                    // Otherwise, go to login page
+                    ApplicationPage.Login);
 
             //show the main window
             Current.MainWindow = new MainWindow();
@@ -46,27 +59,40 @@ namespace NewProject
             Framework.Construct<DefaultFrameworkConstruction>()
                 .AddFileLogger()
                 .AddClientDataStore()
+                .AddFasettoWordViewModels()
+                .AddFasettoWordClientServices()
                 .Build();
 
-            IoC.Setup();
-
-            //Bind a ui manager
-            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
-
-            //Bind a logger
-            IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory(new []
-            {
-                new Core.FileLogger("log.text")
-            }));
-
-            //Bind a file manager
-            IoC.Kernel.Bind<IFileManager>().ToConstant(new BaseFileManager());
-
-            //Bind a file manager
-            IoC.Kernel.Bind<ITaskManager>().ToConstant(new BaseTaskManager());
-
             //Ensure the client data store 
-            await IoC.ClientDataStore.EnsureDataStore();
+            await ClientDataStore.EnsureDataStore();
+
+            // Monitor for server connection status
+            MonitorServerStatus();
+
+            // Load new settings
+            TaskManager.RunAndForget(ViewModelSettings.Load);
+        }
+
+        /// <summary>
+        /// Monitors the fasetto website is up, running and reachable
+        /// by periodically hitting it up
+        /// </summary>
+        private void MonitorServerStatus()
+        {
+            // Create a new endpoint watcher
+            var httpWatcher = new HttpEndpointChecker(
+                // Checking fasetto.chat
+                FrameworkDI.Configuration["FasettoWordServer:HostUrl"],
+                // Every 20 seconds
+                interval: 20000,
+                // Pass in the DI logger
+                logger: Framework.Provider.GetService<ILogger>(),
+                // On change...
+                stateChangedCallback: (result) =>
+                {
+                    // Update the view model property with the new result
+                    ViewModelApplication.ServerReachable = result;
+                });
         }
     }
 }

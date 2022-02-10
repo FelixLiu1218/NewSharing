@@ -30,7 +30,7 @@ namespace NewProject
 
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                NewPage.Content = IoC.Get<ApplicationViewModel>().CurrentPage.ToBasePage();
+                NewPage.Content = new ApplicationViewModel().CurrentPage.ToBasePage();
             }
         }
 

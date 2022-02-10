@@ -2,8 +2,6 @@
 using System;
 using System.Data;
 using System.Windows;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System.Security;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -40,7 +38,23 @@ namespace NewProject
 
         #region Override Methods
 
-        
+        /// <summary>
+        /// Fired when the view model changes
+        /// </summary>
+        protected override void OnViewModelChanged()
+        {
+            // Make sure UI exists first
+            if (ChatMessageList == null)
+                return;
+
+            // Fade in chat message list
+            var storyboard = new Storyboard();
+            storyboard.AddFadeIn(1, from: true);
+            storyboard.Begin(ChatMessageList);
+
+            // Make the message box focused
+            MessageText.Focus();
+        }
 
         #endregion
 

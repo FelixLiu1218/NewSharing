@@ -1,5 +1,8 @@
+using System;
 using System.Security;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using NewProject.Core;
 
 namespace NewProject
 {
@@ -54,6 +57,18 @@ namespace NewProject
         /// Indicated if the current text is in edit mode
         /// </summary>
         public bool Editing { get; set; }
+
+        /// <summary>
+        /// Indicates if the current control is pending an update (in progress)
+        /// </summary>
+        public bool Working { get; set; }
+
+        /// <summary>
+        /// The action to run when saving the text.
+        /// Returns true if the commit was successful, or false otherwise.
+        /// </summary>
+        public Func<Task<bool>> CommitAction { get; set; }
+
         #endregion
 
         #region MyRegion
@@ -108,56 +123,28 @@ namespace NewProject
 
         public void Save()
         {
-            var storePassword = "Testing";
+            // Store the result of a commit call
+            var result = default(bool);
 
-            //Confirm current password is match or not
-            if (storePassword != OriginalPassword.Unsecure())
+            RunCommandAsync(() => Working, async () =>
             {
-                IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+                // While working, come out of edit mode
+                Editing = false;
+
+                // Try and do the work
+                result = CommitAction == null ? true : await CommitAction();
+
+            }).ContinueWith(t =>
+            {
+                // If we succeeded...
+                // Nothing to do
+                // If we fail...
+                if (!result)
                 {
-                    Title = "Error",
-                    Message = "The current password is invalid",
-                    OKText = "OK"
-
-                });
-
-                return;
-            }
-
-            //Check the new one and confirm password match or not
-            if (EditedPassword.Unsecure() != ConfirmPassword.Unsecure())
-            {
-                IoC.UI.ShowMessage(new MessageBoxDialogViewModel
-                {
-                    Title = "Error",
-                    Message = "The new and confirm password do not match",
-                    OKText = "OK"
-                });
-
-                return;
-            }
-
-            //Check edited password have a password
-            if (EditedPassword.Unsecure().Length == 0)
-            {
-                IoC.UI.ShowMessage(new MessageBoxDialogViewModel
-                {
-                    Title = "Error",
-                    Message = "Password cannot be empty",
-                    OKText = "OK"
-                });
-
-                return;
-            }
-
-            //Set the edited password to the current value
-            OriginalPassword = new SecureString();
-            foreach (var VARIABLE in EditedPassword.Unsecure().ToCharArray())
-            {
-                OriginalPassword.AppendChar(VARIABLE);
-            }
-
-            Editing = false;
+                    // Go back into edit mode
+                    Editing = true;
+                }
+            });
         }
 
         public void Cancel()

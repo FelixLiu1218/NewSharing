@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Dna;
+using NewProject.Core;
+using static NewProject.DI;
 
 namespace NewProject
 {
@@ -73,55 +75,25 @@ namespace NewProject
                             Password = (parameter as IHavePassword).SecurePassword.Unsecure()
                         });
 
-                #region need to fix
 
-                // // If the response has an error...
-                // if (await result.HandleErrorIfFailedAsync("Login Failed"))
-                //     // We are done
-                //     return;
-                // // Let the application view model handle what happens
-                // // with the successful login
-                // await ViewModelApplication.HandleSuccessfulLoginAsync(loginResult);
-
-                #endregion
-
+                // If the response has an error...
+                if (await result.HandleErrorIfFailedAsync("Login Failed"))
+                    // We are done
+                    return;
 
                 // OK successfully logged in... now get users data
                 var loginResult = result.ServerResponse.Response;
 
-                IoC.Settings.Name = new TextEntryViewModel
-                {
-                    Label = "Name",
-                    OriginalText = $"Felix Liu {DateTime.Now.ToLocalTime()}"
-                };
-                IoC.Settings.Username = new TextEntryViewModel
-                {
-                    Label = "Username",
-                    OriginalText = "Felix"
-                };
-                IoC.Settings.Password = new PasswordEntryViewModel()
-                {
-                    Label = "Password",
-                    FakePassword = "********"
-                };
-                IoC.Settings.Email = new TextEntryViewModel
-                {
-                    Label = "Email",
-                    OriginalText = "pengfeiliu1218@gmail.com"
-                };
-
-                //Go to chat page
-                IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat);
-
-                // var email = Email;
-                // var pass = (parameter as IHavePassword).SecurePassword.Unsecure();
+                // Let the application view model handle what happens
+                // with the successful login
+                await ViewModelApplication.HandleSuccessfulLoginAsync(loginResult);
             });
             
         }
 
         public async Task Register()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Register);
+            ViewModelApplication.GoToPage(ApplicationPage.Register);
             
             await Task.Delay(1);
         }

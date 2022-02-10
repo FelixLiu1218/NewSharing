@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Dna;
+using static Dna.FrameworkDI;
+using static NewProject.Core.CoreDI;
 
 namespace NewProject.Core
 {
@@ -82,7 +85,7 @@ namespace NewProject.Core
             {
                 var error = ex.Message;
 
-                IoC.Logger.Log($"Crash in {nameof(AwaitAsync)}.{ex.Message}", LogLevel.Debug);
+                Logger.LogDebugSource($"Crash in {nameof(AwaitAsync)}.{ex.Message}");
 
                 Debugger.Break();
 

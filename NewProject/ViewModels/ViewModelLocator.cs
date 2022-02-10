@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NewProject.Core;
+using static NewProject.DI;
 
 namespace NewProject
 {
@@ -21,11 +22,11 @@ namespace NewProject
         /// <summary>
         /// The application view model
         /// </summary>
-        public static ApplicationViewModel ApplicationViewModel => IoC.Get<ApplicationViewModel>();
+        public static ApplicationViewModel ApplicationViewModel => ViewModelApplication;
 
         /// <summary>
         /// The application view model
         /// </summary>
-        public static SettingsViewModel SettingsViewModel => IoC.Get<SettingsViewModel>();
+        public static SettingsViewModel SettingsViewModel => ViewModelSettings;
     }
 }

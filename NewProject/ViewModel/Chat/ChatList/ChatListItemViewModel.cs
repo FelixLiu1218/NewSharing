@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using NewProject.Core;
+using static NewProject.DI; 
 
 namespace NewProject
 {
@@ -49,7 +51,7 @@ namespace NewProject
 
         public void OpenMessage()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Chat, new ChatMessageListViewModel
+            ViewModelApplication.GoToPage(ApplicationPage.Chat, new ChatMessageListViewModel
             {
                 Items = new ObservableCollection<ChatMessageListItemViewModel>
                 {

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NewProject"
              xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
              mc:Ignorable="d" >
-    <StackPanel d:DataContext="{x:Static core:MessageBoxDialogDesignModel.Instance}"
+    <StackPanel d:DataContext="{x:Static local:MessageBoxDialogDesignModel.Instance}"
         Background="{StaticResource ForegroundLightBrush}">
             <TextBlock
                 Padding="5"

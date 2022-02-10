@@ -2,6 +2,9 @@
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Dna;
+using static Dna.FrameworkDI;
+using static NewProject.Core.CoreDI;
 
 namespace NewProject.Core
 {
@@ -12,131 +15,175 @@ namespace NewProject.Core
     {
         #region Task Methods
 
-        public Task Run(Action action, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public async Task Run(Func<Task> function, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            //Try and run the task
             try
             {
-                return Task.Run(action);
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-
-                throw;
-            }
-        }
-
-        public Task Run(Action action, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
-        {
-            //Try and run the task
-            try
-            {
-                return Task.Run(action,cancellationToken);
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-
-                throw;
-            }
-        }
-
-        public Task<TResult> Run<TResult>(Func<TResult> function, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TResult> Run<TResult>(Func<TResult> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
-        {
-            //Try and run the task
-            try
-            {
-                return Task.Run(function,cancellationToken);
-            }
-            catch (Exception ex)
-            {
-                LogError(ex);
-
-                throw;
-            }
-        }
-
-        public async Task Run(Func<Task> function,[CallerMemberName]string orgin ="",[CallerFilePath] string filePath ="",[CallerLineNumber]int lineNumber = 0)
-        {
-            //Try and run the task
-            try
-            {
+                // Try and run the task
                 await Task.Run(function);
             }
             catch (Exception ex)
             {
-                LogError(ex);
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+                // Throw it as normal
                 throw;
             }
         }
 
-        public Task Run(Func<Task> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public async void RunAndForget(Func<Task> function, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            //Try and run the task
             try
             {
-                return Task.Run(function,cancellationToken);
+                await Run(function, origin, filePath, lineNumber);
+            }
+            catch { }
+        }
+
+        public async Task<TResult> Run<TResult>(Func<Task<TResult>> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                // Try and run the task
+                return await Task.Run(function, cancellationToken);
             }
             catch (Exception ex)
             {
-                LogError(ex);
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+                // Throw it as normal
                 throw;
             }
         }
 
-        public Task<TResult> Run<TResult>(Func<Task<TResult>> function, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public async Task<TResult> Run<TResult>(Func<Task<TResult>> function, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            //Try and run the task
             try
             {
-                return Task.Run(function);
+                // Try and run the task
+                return await Task.Run(function);
             }
             catch (Exception ex)
             {
-                LogError(ex);
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+                // Throw it as normal
                 throw;
             }
         }
 
-        public Task<TResult> Run<TResult>(Func<Task<TResult>> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public async Task<TResult> Run<TResult>(Func<TResult> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            //Try and run the task
             try
             {
-                return Task.Run(function,cancellationToken);
+                // Try and run the task
+                return await Task.Run(function, cancellationToken);
             }
             catch (Exception ex)
             {
-                LogError(ex);
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+                // Throw it as normal
                 throw;
             }
         }
 
-        #endregion
-
-        #region Private Helper Methods
-
-
-        /// <summary>
-        /// Logs the given error to the log factory
-        /// </summary>
-        /// <param name="ex">The exception to log</param>
-        /// <param name="origin"> </param>
-        /// <param name="filePath"></param>
-        /// <param name="lineNumber"></param>
-        private void LogError(Exception ex, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public async Task<TResult> Run<TResult>(Func<TResult> function, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            IoC.Logger.Log($"An unexpected error occurred running a ioc.task.run {ex.Message}", LogLevel.Debug,origin,filePath,lineNumber);
+            try
+            {
+                // Try and run the task
+                return await Task.Run(function);
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+                // Throw it as normal
+                throw;
+            }
+        }
+
+        public async Task Run(Func<Task> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                // Try and run the task
+                await Task.Run(function, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+                // Throw it as normal
+                throw;
+            }
+        }
+
+        public async void RunAndForget(Func<Task> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                await Run(function, origin, filePath, lineNumber);
+            }
+            catch { }
+        }
+
+        public async Task Run(Action action, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                // Try and run the task
+                await Task.Run(action, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+                // Throw it as normal
+                throw;
+            }
+        }
+        public async void RunAndForget(Action action, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                await Run(action, origin, filePath, lineNumber);
+            }
+            catch { }
+        }
+
+        public async Task Run(Action action, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                // Try and run the task
+                await Task.Run(action);
+            }
+            catch (Exception ex)
+            {
+                // Log error
+                Logger.LogErrorSource(ex.ToString(), origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+                // Throw it as normal
+                throw;
+            }
+        }
+
+        public async void RunAndForget(Action action, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                await Run(action, origin, filePath, lineNumber);
+            }
+            catch { }
         }
 
         #endregion

@@ -46,8 +46,6 @@ namespace NewProject
                 //Update value
                 _thumbnailUrl = value;
 
-                //TODO
-
                 Task.Delay(2000).ContinueWith( t => LocalFilePath = "/Images/yume.jpg");
             }
         }

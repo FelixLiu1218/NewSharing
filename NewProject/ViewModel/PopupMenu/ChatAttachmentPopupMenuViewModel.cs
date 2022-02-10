@@ -16,14 +16,6 @@ namespace NewProject
     /// </summary>
     public class ChatAttachmentPopupMenuViewModel : BasePopupViewModel
     {
-
-        #region Public Properties
-
-        
-
-        #endregion
-
-
         #region Constructor
 
         public ChatAttachmentPopupMenuViewModel()

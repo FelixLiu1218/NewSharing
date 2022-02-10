@@ -19,6 +19,6 @@ namespace NewProject
         /// <summary>
         /// the text to use for the OK button
         /// </summary>
-        public string OKText { get; set; }
+        public string OKText { get; set; } = "OK";
     }
 }

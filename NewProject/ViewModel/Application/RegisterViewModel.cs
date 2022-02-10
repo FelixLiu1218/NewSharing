@@ -6,12 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Dna;
+using NewProject.Core;
+using static NewProject.DI;
 
 namespace NewProject
 {
     public class RegisterViewModel :BaseViewModel
     {
         #region public Properties
+
+        /// <summary>
+        /// The username of the user
+        /// </summary>
+        public string Username { get; set; }
 
         /// <summary>
         /// the email of user
@@ -63,9 +71,29 @@ namespace NewProject
         {
             await RunCommandAsync(() => this.RegisterIsRunning, async () =>
             {
-                await Task.Delay(1000);
+                // Call the server and attempt to register with the provided credentials
+                var result = await WebRequests.PostAsync<ApiResponse<RegisterResultApiModel>>(
+                    // Set URL
+                    RouteHelpers.GetAbsoluteRoute(ApiRoutes.Register),
+                    // Create api model
+                    new RegisterCredentialsApiModel
+                    {
+                        Username = Username,
+                        Email = Email,
+                        Password = (parameter as IHavePassword).SecurePassword.Unsecure()
+                    });
 
-                IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
+                // If the response has an error...
+                if (await result.HandleErrorIfFailedAsync("Register Failed"))
+                    // We are done
+                    return;
+
+                // OK successfully registered (and logged in)... now get users data
+                var loginResult = result.ServerResponse.Response;
+
+                // Let the application view model handle what happens
+                // with the successful login
+                await ViewModelApplication.HandleSuccessfulLoginAsync(loginResult);
             });
         }
 
@@ -75,7 +103,7 @@ namespace NewProject
         /// <returns></returns>
         public async Task Login()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.Login);
+            ViewModelApplication.GoToPage(ApplicationPage.Login);
 
             await Task.Delay(1);
         }

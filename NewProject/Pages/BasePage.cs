@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using Dna;
 
 namespace NewProject
 {
@@ -164,18 +165,32 @@ namespace NewProject
         /// </summary>
         public BasePage() : base()
         {
-            //default view model
-            ViewModel = IoC.Get<VM>();
+            // If in design time mode...
+            if (DesignerProperties.GetIsInDesignMode(this))
+                // Just use a new instance of the VM
+                ViewModel = new VM();
+            else
+                // Create a default view model
+                ViewModel = Framework.Service<VM>() ?? new VM();
         }
 
         public BasePage(VM specificViewModel =null) : base()
         {
-            //Set specific view model
+            // Set specific view model
             if (specificViewModel != null)
                 ViewModel = specificViewModel;
             else
-                //default view model
-                ViewModel = IoC.Get<VM>();
+            {
+                // If in design time mode...
+                if (DesignerProperties.GetIsInDesignMode(this))
+                    // Just use a new instance of the VM
+                    ViewModel = new VM();
+                else
+                {
+                    // Create a default view model
+                    ViewModel = Framework.Service<VM>() ?? new VM();
+                }
+            }
         }
 
             #endregion

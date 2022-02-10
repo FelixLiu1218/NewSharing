@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Xml.XPath;
+using static NewProject.Core.CoreDI;
 
 namespace NewProject.Core
 {
@@ -31,7 +32,7 @@ namespace NewProject.Core
             await AsyncAwaiter.AwaitAsync(nameof(BaseFileManager) + path, async () =>
             {
                 // Run the sync file access as a new task
-                await IoC.Task.Run(() =>
+                await TaskManager.Run(() =>
                 {
                      using (var fileStream = (TextWriter)new StreamWriter(File.Open(path,append ? FileMode.Append : FileMode.Create)))
                          fileStream.Write(text);

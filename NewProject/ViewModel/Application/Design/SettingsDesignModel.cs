@@ -21,10 +21,13 @@ namespace NewProject
         /// </summary>
         public SettingsDesignModel()
         {
-            Name = new TextEntryViewModel
+            FirstName = new TextEntryViewModel
             {
-                Label = "Name",
-                OriginalText = "Felix Liu"
+                Label = "Fist Name", OriginalText = "Felix"
+            };
+            LastName = new TextEntryViewModel
+            {
+                Label = "Last Name", OriginalText = "Liu"
             };
             Username = new TextEntryViewModel
             {

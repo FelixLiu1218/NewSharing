@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace NewProject
 {
@@ -23,7 +24,6 @@ namespace NewProject
         /// </summary>
         public bool DimmableOverlayVisible { get; set; }
 
-
         #endregion
 
         #region Constructor
@@ -32,6 +32,5 @@ namespace NewProject
             _window = window;
         }
         #endregion
-
     }
 }

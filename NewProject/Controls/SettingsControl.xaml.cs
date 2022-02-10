@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NewProject.Core;
+using static NewProject.DI;
 
 namespace NewProject
 {
@@ -25,8 +27,12 @@ namespace NewProject
         {
             InitializeComponent();
 
-            //Set data context to settings view model
-            DataContext = IoC.Settings;
+            // If we are in design mode...
+            if (DesignerProperties.GetIsInDesignMode(this))
+                // Create new instance of settings view model
+                DataContext = new SettingsViewModel();
+            else
+                DataContext = ViewModelSettings;
         }
     }
 }

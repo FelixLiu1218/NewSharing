@@ -2,8 +2,6 @@
 using System;
 using System.Data;
 using System.Windows;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 using System.Security;
 using NewProject.Core;
 
