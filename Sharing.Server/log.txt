@@ -1,0 +1,20 @@
+INFORMATION: [2022-02-11 12:21:05] User profile is available. Using 'C:\Users\yumes\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFORMATION: [2022-02-11 12:21:07] Entity Framework Core 2.1.14-servicing-32113 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFORMATION: [2022-02-13 09:48:44] User profile is available. Using 'C:\Users\yumes\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFORMATION: [2022-02-13 09:48:45] Entity Framework Core 2.1.14-servicing-32113 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFORMATION: [2022-02-13 02:43:01] User profile is available. Using 'C:\Users\yumes\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFORMATION: [2022-02-13 02:43:03] Entity Framework Core 2.1.14-servicing-32113 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFORMATION: [2022-02-14 09:39:20] User profile is available. Using 'C:\Users\yumes\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFORMATION: [2022-02-14 09:39:22] Entity Framework Core 2.1.14-servicing-32113 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+INFORMATION: [2022-02-14 09:39:22] Executed DbCommand (90ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+INFORMATION: [2022-02-14 09:39:25] Request starting HTTP/1.1 GET https://localhost:5555/  
+INFORMATION: [2022-02-14 09:39:26] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Sharing.Server.HomeController (Sharing.Server).
+INFORMATION: [2022-02-14 09:39:27] Executing action method Sharing.Server.HomeController.Index (Sharing.Server) - Validation state: Valid
+INFORMATION: [2022-02-14 09:39:27] Executed action method Sharing.Server.HomeController.Index (Sharing.Server), returned result Microsoft.AspNetCore.Mvc.ViewResult in 2.5511ms.
+INFORMATION: [2022-02-14 09:39:30] Executing ViewResult, running view Index.
+INFORMATION: [2022-02-14 09:39:30] Executed ViewResult - view Index executed in 3529.0175ms.
+INFORMATION: [2022-02-14 09:39:30] Executed action Sharing.Server.HomeController.Index (Sharing.Server) in 3956.5598ms
+INFORMATION: [2022-02-14 09:39:30] Request finished in 4720.1913ms 200 text/html; charset=utf-8
+INFORMATION: [2022-02-14 09:39:30] Request starting HTTP/1.1 GET https://localhost:5555/favicon.ico  
+INFORMATION: [2022-02-14 09:39:30] Request finished in 20.9635ms 404 
