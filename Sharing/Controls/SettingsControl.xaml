@@ -17,49 +17,48 @@
             </Grid.RowDefinitions>
 
             <!-- Settings Title -->
-            <Grid Height="40" Margin="0 0 0 20">
+            <Grid Height="70" Margin="0 10 0 25">
 
-                <!-- Back button -->
-                <Button Style="{StaticResource IconGrowButton}"
-                    Height="40"
-                    Content="{StaticResource FontAwesomeArrowLeftIcon}"
-                    FontFamily="{StaticResource FontAwesome}"
-                    Foreground="{StaticResource ForegroundDarkBrush}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                <!-- Close button -->
+                <Button
+                    Margin="0 0 20 0"
+                    Style="{StaticResource IconGrowButton}"
+                    Content="{StaticResource FontAwesomeClose}"
+                    FontSize="{StaticResource FontSizeXXXXLarge}"
                     Command="{Binding CloseCommand}"
-                    />
+                    HorizontalAlignment="Right"/>
 
                 <!-- Settings header -->
                 <TextBlock FontSize="{StaticResource FontSizeLarge}"
-                       Foreground="{StaticResource ForegroundVeryDarkBrush}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center">
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
                 <!-- Cog icon -->
                 <Run FontFamily="{StaticResource FontAwesome}"
-                     Text="{StaticResource FontAwesomeCogIcon}"
-                     Foreground="{StaticResource WordOrangeBrush}" />
+                     FontSize="{StaticResource FontSizeXLarge}"
+                     Text="{StaticResource FontAwesomeSettings}"
+                     Foreground="{StaticResource  ForegroundVeryDarkBrush}" />
                 <!-- Settings text -->
                 <Run Text="Settings"
-                     FontFamily="{StaticResource LatoRegular}" />
+                     FontFamily="{StaticResource Arial}"
+                     FontSize="{StaticResource FontSizeXXLarge}" />
                 </TextBlock>
 
             </Grid>
 
             <!-- Main Content -->
             <Grid Grid.Row="1"
-                  Width="600"
+                  Width="700"
                   VerticalAlignment="Top"
                   >
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="260" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
 
                 <!-- Profile Picture -->
-                <Grid Margin="0 0 30 0"
+                <Grid Margin="0 0 10 0"
                       VerticalAlignment="Top"
                       Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
                     
@@ -93,9 +92,7 @@
 
                     <Button Content="{Binding LogoutButtonText}"
                             Command="{Binding LogoutCommand}"
-                            FontSize="{StaticResource FontSizeRegular}"
-                            
-                            />
+                    />
 
                 </StackPanel>
 

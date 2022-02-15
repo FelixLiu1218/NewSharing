@@ -106,9 +106,9 @@ namespace Sharing
 
             // Set default hints
             // TODO: Replace with localization text
-            CurrentPasswordHintText = "Current Password";
-            NewPasswordHintText = "New Password";
-            ConfirmPasswordHintText = "Confirm Password";
+            CurrentPasswordHintText = " Current Password";
+            NewPasswordHintText = " New Password";
+            ConfirmPasswordHintText = " Confirm Password";
         }
 
         #endregion

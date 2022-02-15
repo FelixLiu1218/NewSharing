@@ -53,7 +53,7 @@
                     <TextBlock Text="Parnell" 
                        Foreground="{StaticResource ForegroundLightBrush}"
                        FontSize="{StaticResource FontSizeXLarge}"
-                       FontFamily="{StaticResource LatoRegular}"
+                       FontFamily="{StaticResource Arial}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        />
@@ -65,7 +65,7 @@
                        Grid.ColumnSpan="2"
                        Foreground="{StaticResource ForegroundLightBrush}"
                        FontSize="{StaticResource FontSizeXLarge}"
-                       FontFamily="{StaticResource LatoRegular}"
+                       FontFamily="{StaticResource Arial}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        />
@@ -75,11 +75,11 @@
                 
                 <!-- Search Button -->
                 <Button Style="{StaticResource IconGrowButton}" 
-                        Content="{StaticResource FontAwesomeSearchIcon}"
+                        Content="{StaticResource FontAwesomeSearch}"
                         Command="{Binding OpenSearchCommand}"
                         />
-                
-                <Button Style="{StaticResource IconGrowButton}" Content="{StaticResource FontAwesomeEllipsisVerticalIcon}" />
+
+                <Button Style="{StaticResource IconGrowButton}" Content="{StaticResource FontAwesomeellipsis}" />
             </StackPanel>
 
             <!-- Search Overlay -->
@@ -94,7 +94,7 @@
 
                 <!-- Close search button -->
                 <Button Style="{StaticResource IconGrowButton}" 
-                        Content="{StaticResource FontAwesomeCloseIcon}"
+                        Content="{StaticResource FontAwesomeClose}"
                         Command="{Binding CloseSearchCommand}"
                         Foreground="{StaticResource WordOrangeBrush}"
                         />
@@ -138,78 +138,80 @@
             <local:BubbleContent DataContext="{Binding AttachmentMenu}" />
             
         </Border>
-        
-        <!-- Message Send Text box -->
-        <Grid Grid.Row="2" 
-              Panel.ZIndex="3"
-              MinHeight="50"
-              MaxHeight="114"
-              Background="{StaticResource ForegroundLightBrush}"
-              >
 
-            <Grid.ColumnDefinitions>
+        <Border Grid.Row="2" BorderThickness="0 0.3 0 0" BorderBrush="{StaticResource ForegroundDarkBrush}">
+            <!-- Message Send Text box -->
+            <Grid 
+                  Panel.ZIndex="3"
+                  MinHeight="50"
+                  MaxHeight="114"
+                  Background="{StaticResource ForegroundLightBrush}"
+                  >
+
+                <Grid.ColumnDefinitions>
+                    <!-- Attach button -->
+                    <ColumnDefinition Width="Auto" />
+                    
+                    <!-- Text entry box -->
+                    <ColumnDefinition Width="*" />
+                    
+                    <!-- Additional buttons -->
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
                 <!-- Attach button -->
-                <ColumnDefinition Width="Auto" />
-                
-                <!-- Text entry box -->
-                <ColumnDefinition Width="*" />
-                
-                <!-- Additional buttons -->
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <!-- Attach button -->
-            <Button Style="{StaticResource IconGrowButton}"
-                    Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
-                    Content="{StaticResource FontAwesomePaperclipIcon}"
-                    VerticalAlignment="Top"
-                    Command="{Binding AttachmentButtonCommand}"
-                    Foreground="{StaticResource ForegroundDarkBrush}"
-                    />
-
-            <!-- Message box -->
-            <TextBox x:Name="MessageText"    
-                     Grid.Column="1" 
-                     Tag="Write a message..."
-                     local:IsFocusedProperty.Value="True"
-                     Text="{Binding PendingMessageText, UpdateSourceTrigger=PropertyChanged}"
-                     FontSize="{StaticResource FontSizeRegular}"
-                     VerticalAlignment="Center"
-                     BorderThickness="0"
-                     Padding="0 10 10 10"
-                     AcceptsReturn="True"
-                     AcceptsTab="True"
-                     VerticalScrollBarVisibility="Auto"
-                     PreviewKeyDown="MessageText_PreviewKeyDown"
-                     />
-
-            <!-- Additional buttons -->
-            <StackPanel Grid.Column="2"
-                        Orientation="Horizontal"
-                        VerticalAlignment="Top"
-                        Margin="0 0 8 0"
-                        >
-
-                <!-- Emoji button -->
                 <Button Style="{StaticResource IconGrowButton}"
-                    Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
-                    Content="{StaticResource FontAwesomeEmojiIcon}"
-                    Foreground="{StaticResource WordOrangeBrush}"
-                    />
-                
-                <!-- Send button -->
-                <Button Content="Send"
-                        Padding="8"
-                        IsDefault="True"
-                        Focusable="False"
-                        Command="{Binding SendCommand}"
-                        Background="{StaticResource WordGreenBrush}"
-                        FontSize="{StaticResource FontSizeRegular}"
+                        Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
+                        Content="{StaticResource FontAwesomePaperClipIcon}"
+                        VerticalAlignment="Top"
+                        Command="{Binding AttachmentButtonCommand}"
+                        Foreground="{StaticResource ForegroundDarkBrush}"
                         />
 
-            </StackPanel>
+                <!-- Message box -->
+                <TextBox x:Name="MessageText"    
+                         Grid.Column="1" 
+                         Tag="Write a message..."
+                         local:IsFocusedProperty.Value="True"
+                         Text="{Binding PendingMessageText, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="{StaticResource FontSizeRegular}"
+                         VerticalAlignment="Center"
+                         BorderThickness="0"
+                         Padding="0 10 10 10"
+                         AcceptsReturn="True"
+                         AcceptsTab="True"
+                         VerticalScrollBarVisibility="Auto"
+                         PreviewKeyDown="MessageText_PreviewKeyDown"
+                         />
 
-        </Grid>
-        
+                <!-- Additional buttons -->
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Top"
+                            Margin="0 0 8 0"
+                            >
+
+                    <!-- Emoji button -->
+                    <Button Style="{StaticResource IconGrowButton}"
+                        Height="{Binding MinHeight, RelativeSource={RelativeSource AncestorType=Grid}}"
+                        Content="{StaticResource FontAwesomeEmoji}"
+                        Foreground="{StaticResource ForegroundDarkBrush}"
+                        />
+                    
+                    <!-- Send button -->
+                    <Button Content="Send"
+                            Padding="8"
+                            IsDefault="True"
+                            Focusable="False"
+                            Command="{Binding SendCommand}"
+                            Style="{StaticResource Button}"
+                            FontSize="{StaticResource FontSizeRegular}"
+                            />
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
     </Grid>
 </local:BasePage>
+    

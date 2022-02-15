@@ -31,30 +31,37 @@
 
                             <!-- Sign Up header -->
                             <TextBlock Text="Sign Up" 
-                                   FontSize="{StaticResource FontSizeXXLarge}" 
-                                   FontFamily="{StaticResource LatoRegular}"
+                                   FontSize="{StaticResource FontSizeXXXXLarge}" 
+                                   FontFamily="{StaticResource Arial}"
                                    Foreground="{StaticResource WordBlueBrush}" />
 
-                            <!-- Sign up subtext-->
-                            <TextBlock Text="It's about to get fun" 
+                            <TextBlock Text="UserName" Margin="0 20 0 0"
                                        FontSize="{StaticResource FontSizeLarge}"
-                                       Foreground="{StaticResource ForegroundDarkBrush}"
-                                       Margin="0 0 0 20"
-                                       />
+                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
 
                             <!-- Username -->
                             <TextBox 
                                 Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
                                 local:IsFocusedProperty.Value="True"
+                                Style="{StaticResource EmailTextBox}"
                                 Tag="Username" />
+
+                            <TextBlock Text="Email Address" Margin="0 20 0 0"
+                                       FontSize="{StaticResource FontSizeLarge}"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
 
                             <!-- Email -->
                             <TextBox 
                                 Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
+                                Style="{StaticResource EmailTextBox}"
                                 Tag="Email" />
 
+                            <TextBlock Text="Password" Margin="0 20 0 0"
+                                       FontSize="{StaticResource FontSizeLarge}"
+                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
+
                             <!-- Password -->
-                            <PasswordBox x:Name="PasswordText" Tag="Password" Margin="0 0 0 30" />
+                            <PasswordBox x:Name="PasswordText"/>
 
                             <!-- Next button -->
                             <Button Content="Register" 
@@ -70,7 +77,7 @@
 
                     <Button 
                         Style="{StaticResource TextButton}" 
-                        Content="Or, I already have an account..." 
+                        Content="I already have an account" 
                         HorizontalAlignment="Center" 
                         Command="{Binding LoginCommand}"
                         />

@@ -5,73 +5,83 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Sharing"
              xmlns:core="clr-namespace:Sharing.Core;assembly=Sharing.Core"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" >
 
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
             
             <!-- Main background -->
-            <Border>
+            <Border BorderThickness="0 0.3 0.6 0" BorderBrush="{StaticResource ForegroundDarkBrush}" Background="{StaticResource ForegroundLightBrush}">
 
                 <!-- Content -->
                 <Grid>
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <!-- Top Menu -->
-                    <Grid Height="50">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Main buttons -->
-                        <StackPanel Orientation="Horizontal">
-                            <Button 
-                                Style="{StaticResource IconButton}" 
-                                Content="{StaticResource FontAwesomeChatIcon}"
-                                Command="{Binding OpenChatCommand}"
-                                />
-                            
-                            <Button
-                                Style="{StaticResource IconButton}"
-                                Content="{StaticResource FontAwesomeUserIcon}" 
-                                Command="{Binding OpenContactsCommand}"
-                                />
-                            
-                            <Button 
-                                Style="{StaticResource IconButton}" 
-                                Content="{StaticResource FontAwesomePictureIcon}" 
-                                Command="{Binding OpenMediaCommand}"
-                                />
-                        </StackPanel>
-
-                        <!-- Settings button -->
-                        <Button Grid.Column="2"
-                                Foreground="{StaticResource WordDarkBlueBrush}"
-                                Command="{Binding SettingsViewModel.OpenCommand, 
-                                     Source={x:Static local:ViewModelLocator.Instance}}"
-                                Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeCogIcon}" />
-
-                    </Grid>
-
-                    <!-- The user content -->
-                    <Border Background="{StaticResource ForegroundLightBrush}"
-                            Grid.Row="1">
-                        <ContentPresenter />
+                    <!-- Top -->
+                    <Border Height="100" BorderThickness=" 0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
+                        <Grid>
+                            <!-- Buttons -->
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource UserIcon}" VerticalAlignment="Center" Margin="20 0 5 0"></TextBlock>
+                                <TextBlock Style="{StaticResource TopUserName}" Text="{Binding OriginalText}" VerticalAlignment="Center" Margin="5 0 0 0"></TextBlock>
+                            </StackPanel>
+                        </Grid>
                     </Border>
 
+                    <Border Grid.Row="1" BorderThickness="0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
+                        <!-- Menu -->
+                        <Grid Height="55">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Main buttons -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button 
+                                    Style="{StaticResource IconGrowSideMenuButton}" 
+                                    Content="{StaticResource FontAwesomeUser}"
+                                    Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                                    Command="{Binding OpenChatCommand}"
+                                    />
+                                
+                                <Button
+                                    Style="{StaticResource IconGrowSideMenuButton}" 
+                                    Content="{StaticResource FontAwesomeUsers}" 
+                                    Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                                    Command="{Binding OpenContactsCommand}"
+                                    />
+                                
+                                <Button 
+                                    Style="{StaticResource IconGrowSideMenuButton}"  
+                                    Content="{StaticResource FontAwesomeUsers}" 
+                                    Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                                    Command="{Binding OpenMediaCommand}"
+                                    />
+                            </StackPanel>
+
+                            <!-- Settings button -->
+                            <Button Grid.Column="2"
+                                    Command="{Binding SettingsViewModel.OpenCommand, Source={x:Static local:ViewModelLocator.Instance}}"
+                                    Style="{StaticResource IconButton}" 
+                                    Content="{StaticResource FontAwesomeSettingIcon}"
+                                    Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"/>
+
+                        </Grid>
+                    </Border>
+                    <!-- The user content -->
+                    <Border Background="{StaticResource ForegroundLightBrush}"
+                            Grid.Row="2">
+                        <ContentPresenter />
+                    </Border>
                 </Grid>
-
-
             </Border>
-
         </ControlTemplate>
     </UserControl.Template>
     
