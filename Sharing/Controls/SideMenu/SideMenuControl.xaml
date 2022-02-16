@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Sharing"
              xmlns:core="clr-namespace:Sharing.Core;assembly=Sharing.Core"
-             mc:Ignorable="d" >
+             d:DataContext="{x:Static local:SideMenuDesignModel.Instance}"
+             mc:Ignorable="d">
 
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
@@ -23,15 +24,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Top -->
-                    <Border Height="100" BorderThickness=" 0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
-                        <Grid>
-                            <!-- Buttons -->
-                            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource UserIcon}" VerticalAlignment="Center" Margin="20 0 5 0"></TextBlock>
-                                <TextBlock Style="{StaticResource TopUserName}" Text="{Binding OriginalText}" VerticalAlignment="Center" Margin="5 0 0 0"></TextBlock>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
+                    <local:UserPanelControl DataContext="{Binding Username}"/>
 
                     <Border Grid.Row="1" BorderThickness="0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
                         <!-- Menu -->

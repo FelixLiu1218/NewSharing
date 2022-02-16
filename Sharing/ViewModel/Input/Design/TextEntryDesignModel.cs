@@ -22,8 +22,8 @@
         public TextEntryDesignModel()
         {
             Label = "Name";
-            OriginalText = "Luke Malpass";
-            EditedText = "Editing :)";
+            OriginalText = "Felix Liu";
+            EditedText = "Editing";
         }
 
         #endregion

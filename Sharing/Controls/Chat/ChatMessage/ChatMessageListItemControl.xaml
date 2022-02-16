@@ -12,7 +12,7 @@
         <Grid>
 
             <!-- Profile picture -->
-            <Border VerticalAlignment="Top"
+            <Border VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Margin="0 7.5 0 7.5"
                     Visibility="{Binding SentByMe, Converter={local:BooleanToVisiblityConverter}}"
@@ -32,11 +32,11 @@
             </Border>
 
             <!-- Chat message container -->
-            <Grid Margin="25 0 25 0"
+            <Grid Margin="40 0 15 0"
                   HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}}">
 
                 <Grid.Triggers>
-                    
+
                     <!-- Mouse over shows time -->
                     <EventTrigger RoutedEvent="MouseEnter">
                         <BeginStoryboard>
@@ -54,9 +54,9 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
-                    
+
                 </Grid.Triggers>
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -100,6 +100,10 @@
                     <Grid Grid.Row="1"
                           HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}}"
                           Visibility="{Binding HasMessage, Converter={local:BooleanToVisiblityGoneConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="196*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -109,8 +113,8 @@
 
                         <!-- Speech bubble rectangle -->
                         <Border CornerRadius="10"
-                                Padding="25 12.5"
-                                Background="{StaticResource WordDoubleVeryLightBlueBrush}"
+                                Padding="17.5 10"
+                                Background="{Binding SentByMe, Converter={local:SentByMeToBackgroundConverter}}" Grid.ColumnSpan="2"
                                 >
 
                             <!-- Message text -->
@@ -124,21 +128,21 @@
                         </Border>
 
                         <!-- Chat bubble anchor -->
-                        <Path Grid.Row="1" 
+                        <Path 
                               Stroke="Black"
                               Panel.ZIndex="1"
-                              Margin="15 -1 15 0"
+                              Margin="16,33,0,0"
                               Data="M 0,0 L 10,10 L 20,0 L 0,0" 
                               StrokeThickness="0"
                               HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}}"
-                              Fill="{Binding SentByMe, Converter={local:SentByMeToBackgroundConverter}}" />
+                              Fill="{Binding SentByMe, Converter={local:SentByMeToBackgroundConverter}}" Grid.RowSpan="2" />
 
                         <!-- Time containers -->
                         <StackPanel Name="ExtraDetails" 
-                            Grid.Row="2"
+                            Grid.Row="1"
                             Opacity="0"
-                            HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}, ConverterParameter=True}"
-                            Orientation="Horizontal">
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal" Margin="0,9,0,0" Grid.RowSpan="2">
 
                             <!-- Sent time -->
                             <TextBlock Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}"

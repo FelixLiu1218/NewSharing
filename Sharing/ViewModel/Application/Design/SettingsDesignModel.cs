@@ -23,11 +23,11 @@ namespace Sharing
         /// </summary>
         public SettingsDesignModel()
         {
-            FirstName = new TextEntryViewModel { Label = "Fist Name", OriginalText = "Luke" };
-            LastName = new TextEntryViewModel { Label = "Last Name", OriginalText = "Malpass" };
-            Username = new TextEntryViewModel { Label = "Username", OriginalText = "luke" };
+            FirstName = new TextEntryViewModel { Label = "First Name", OriginalText = "Felix" };
+            LastName = new TextEntryViewModel { Label = "Last Name", OriginalText = "Liu" };
+            Username = new TextEntryViewModel { Label = "Username", OriginalText = "Felix1218" };
             Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
-            Email = new TextEntryViewModel { Label = "Email", OriginalText = "contact@angelsix.com" };
+            Email = new TextEntryViewModel { Label = "Email", OriginalText = "pengfeiliu1218@gmail.com" };
         }
 
         #endregion

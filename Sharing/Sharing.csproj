@@ -113,7 +113,10 @@
     <Compile Include="Controls\SettingsControl.xaml.cs">
       <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SideMenuControl.xaml.cs">
+    <Compile Include="Controls\SideMenu\UserPanelControl.xaml.cs">
+      <DependentUpon>UserPanelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SideMenu\SideMenuControl.xaml.cs">
       <DependentUpon>SideMenuControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\BaseDialogUserControl.cs" />
@@ -153,6 +156,8 @@
     <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
     <Compile Include="ValueConverters\HorizontalAlignmentConverter.cs" />
     <Compile Include="ValueConverters\TimeToReadTimeConverter.cs" />
+    <Compile Include="ViewModel\SideMenu\Design\SideMenuDesignModel.cs" />
+    <Compile Include="ViewModel\SideMenu\SideMenuVIewModel.cs" />
     <Compile Include="WebRequests\WebRequestResultExtensions.cs" />
     <Compile Include="WPFViewModels\DialogWindowViewModel.cs" />
     <Compile Include="WPFViewModels\ViewModelLocator.cs" />
@@ -230,7 +235,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\SideMenuControl.xaml">
+    <Page Include="Controls\SideMenu\UserPanelControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SideMenu\SideMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,15 +332,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Logo\icon.ico" />
-    <Resource Include="Images\Logo\logo-small.png" />
-    <Resource Include="Images\Logo\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Backgrounds\emoji-background.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sharing.Core\Sharing.Core.csproj">

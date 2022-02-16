@@ -18,11 +18,13 @@ namespace Sharing
     /// <summary>
     /// Interaction logic for SideMenuControl.xaml
     /// </summary>
-    public partial class SideMenuControl : UserControl
+    public partial class UserPanelControl : UserControl
     {
-        public SideMenuControl()
+        public UserPanelControl()
         {
             InitializeComponent();
+
+            
         }
     }
 }

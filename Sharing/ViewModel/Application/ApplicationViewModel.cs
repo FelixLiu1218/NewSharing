@@ -167,7 +167,13 @@ namespace Sharing
                 OnPropertyChanged(nameof(CurrentPage));
 
             // Show side menu or not?
-            SideMenuVisible = page == ApplicationPage.Chat;
+            // SideMenuVisible = page == ApplicationPage.Chat;
+            if (page == ApplicationPage.Chat)
+            {
+                //TaskManager.RunAndForget(ViewModelSideMenu.LoadAsync);
+                SideMenuVisible = true;
+            }
+                
 
         }
 
@@ -182,6 +188,9 @@ namespace Sharing
 
             // Load new settings
             await ViewModelSettings.LoadAsync();
+
+            // Load Side menu
+            //await ViewModelSideMenu.LoadAsync();
 
             // Go to chat page
             ViewModelApplication.GoToPage(ApplicationPage.Chat);

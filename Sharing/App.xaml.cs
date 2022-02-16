@@ -67,6 +67,9 @@ namespace Sharing
 
             // Load new settings
             TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
+
+            // Load new sidemenu
+            //TaskManager.RunAndForget(ViewModelSideMenu.LoadAsync);
         }
 
         /// <summary>
