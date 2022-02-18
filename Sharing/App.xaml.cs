@@ -44,6 +44,8 @@ namespace Sharing
             // Show the main window
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
+
+            //TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
         }
 
         /// <summary>
@@ -67,9 +69,6 @@ namespace Sharing
 
             // Load new settings
             TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
-
-            // Load new sidemenu
-            //TaskManager.RunAndForget(ViewModelSideMenu.LoadAsync);
         }
 
         /// <summary>

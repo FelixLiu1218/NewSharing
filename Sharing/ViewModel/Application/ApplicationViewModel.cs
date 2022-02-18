@@ -27,6 +27,7 @@ namespace Sharing
         /// </summary>
         public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Login;
 
+
         /// <summary>
         /// The view model to use for the current page when the CurrentPage changes
         /// NOTE: This is not a live up-to-date view model of the current page
@@ -39,6 +40,8 @@ namespace Sharing
         /// True if the side menu should be shown
         /// </summary>
         public bool SideMenuVisible { get; set; } = false;
+
+        public bool TitleBarVisible { get; set; } = false;
 
         /// <summary>
         /// True if the settings menu should be shown
@@ -147,7 +150,7 @@ namespace Sharing
         /// </summary>
         /// <param name="page">The page to go to</param>
         /// <param name="viewModel">The view model, if any, to set explicitly to the new page</param>
-        public void GoToPage(ApplicationPage page, BaseViewModel viewModel = null)
+        public void GoToPage(ApplicationPage page, BaseViewModel viewModel=null)
         {
             // Always hide settings page if we are changing pages
             SettingsMenuVisible = false;
@@ -170,10 +173,14 @@ namespace Sharing
             // SideMenuVisible = page == ApplicationPage.Chat;
             if (page == ApplicationPage.Chat)
             {
-                //TaskManager.RunAndForget(ViewModelSideMenu.LoadAsync);
                 SideMenuVisible = true;
+                TitleBarVisible = true;
             }
-                
+            else
+            {
+                SideMenuVisible = false;
+                TitleBarVisible = false;
+            }
 
         }
 
@@ -189,8 +196,6 @@ namespace Sharing
             // Load new settings
             await ViewModelSettings.LoadAsync();
 
-            // Load Side menu
-            //await ViewModelSideMenu.LoadAsync();
 
             // Go to chat page
             ViewModelApplication.GoToPage(ApplicationPage.Chat);

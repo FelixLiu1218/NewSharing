@@ -45,20 +45,6 @@
                 <ColumnDefinition Width="Auto" />
 
             </Grid.ColumnDefinitions>
-
-
-            <!-- Example Marquee Title -->
-            <!--<Border ClipToBounds="True">
-                <Border local:AnimateMarqueeProperty.Value="True">
-                    <TextBlock Text="Parnell" 
-                       Foreground="{StaticResource ForegroundLightBrush}"
-                       FontSize="{StaticResource FontSizeXLarge}"
-                       FontFamily="{StaticResource Arial}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       />
-                </Border>
-            </Border>-->
             
             <!-- Title text -->
             <TextBlock Text="{Binding DisplayTitle}" 

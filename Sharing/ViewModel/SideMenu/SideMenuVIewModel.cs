@@ -14,9 +14,11 @@ namespace Sharing
 {
     public class SideMenuViewModel : BaseViewModel
     {
-        public ICommand LoadCommand { get; set; }
+        public bool Loading { get; set; }
 
         public TextEntryViewModel Username { get; set; }
+
+        public TextEntryViewModel OriginalText { get; set; }
 
         public SideMenuViewModel()
         {
@@ -25,43 +27,51 @@ namespace Sharing
                 Label = "Username",
                 OriginalText = "ViewModelTestName"
             };
-
-            LoadCommand = new RelayCommand(async () => await LoadAsync());
         }
 
         public async Task LoadAsync()
         {
-            // Store single transient instance of client data store
-            var scopedClientDataStore = ClientDataStore;
+            await RunCommandAsync(() => Loading, async () =>
+            {
+                // Store single transient instance of client data store
+                var scopedClientDataStore = ClientDataStore;
 
-            // Get the user token
-            var token = (await scopedClientDataStore.GetLoginCredentialsAsync())?.Token;
+                // Update values from local cache
+                await UpdateValuesFromLocalStoreAsync(scopedClientDataStore);
 
-            // If we don't have a token (so we are not logged in...)
-            if (string.IsNullOrEmpty(token))
-                // Then do nothing more
-                return;
+                // Get the user token
+                var token = (await scopedClientDataStore.GetLoginCredentialsAsync())?.Token;
 
-            // Load user profile details from server
-            var result =await WebRequests.PostAsync<ApiResponse<UserProfileDetailsApiModel>>(
-                // Set URL
-                RouteHelpers.GetAbsoluteRoute(ApiRoutes.GetUserProfile),
-                // Pass in user Token
-                bearerToken: token);
+                // If we don't have a token (so we are not logged in...)
+                if (string.IsNullOrEmpty(token))
+                    // Then do nothing more
+                    return;
+
+                // Load user profile details form server
+                var result = await WebRequests.PostAsync<ApiResponse<UserProfileDetailsApiModel>>(
+                    // Set URL
+                    RouteHelpers.GetAbsoluteRoute(ApiRoutes.GetUserProfile),
+                    // Pass in user Token
+                    bearerToken: token);
+
+                // If the response has an error...
+                if (await result.HandleErrorIfFailedAsync("Load User Details Failed"))
+                    // We are done
+                    return;
 
 
+                // Create data model from the response
+                var dataModel = result.ServerResponse.Response.ToLoginCredentialsDataModel();
 
-            // Create data model from the response
-            var dataModel =result.ServerResponse.Response.ToLoginCredentialsDataModel();
+                // Re-add our known token
+                dataModel.Token = token;
 
-            // Re-add our known token
-            dataModel.Token = token;
+                // Save the new information in the data store
+                await scopedClientDataStore.SaveLoginCredentialsAsync(dataModel);
 
-            // Save the new information in the data store
-            await scopedClientDataStore.SaveLoginCredentialsAsync(dataModel);
-
-            // Update values from local cache
-            await UpdateValuesFromLocalStoreAsync(scopedClientDataStore);
+                // Update values from local cache
+                await UpdateValuesFromLocalStoreAsync(scopedClientDataStore);
+            });
         }
 
         #region Private Helper Methods

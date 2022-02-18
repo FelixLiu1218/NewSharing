@@ -7,22 +7,18 @@
              xmlns:core="clr-namespace:Sharing.Core;assembly=Sharing.Core"
              d:DataContext="{x:Static local:TextEntryDesignModel.Instance}"
              mc:Ignorable="d">
-
-    <UserControl.Template>
-        <ControlTemplate TargetType="UserControl">
-            <!-- Top -->
-            <Border Height="100" BorderThickness=" 0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
-                <Grid>
-                    <!-- Buttons -->
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource UserIcon}" VerticalAlignment="Center" Margin="20 0 5 0"></TextBlock>
-                        <TextBlock Style="{StaticResource TopUserName}" Text="{Binding OriginalText}" VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Margin="5 0 0 0"></TextBlock>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </ControlTemplate>
-    </UserControl.Template>
     
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+            
+        <TextBlock Style="{StaticResource UserIcon}" VerticalAlignment="Center"
+                   Margin="15 5 5 0" />
+        <TextBlock  Grid.Column="1" Style="{StaticResource TopUserName}" Text="{Binding OriginalText}" VerticalAlignment="Center"
+                    Margin="5 5 0 0" />
+            
+    </Grid>
 </UserControl>

@@ -48,11 +48,6 @@ namespace Sharing
                 // Update value
                 mThumbnailUrl = value;
 
-                // TODO: Download image from website
-                //       Save file to local storage/cache
-                //       Set LocalFilePath value
-                //
-                //       For now, just set the file path directly
                 Task.Delay(2000).ContinueWith(t => LocalFilePath = "/Images/Samples/rusty.jpg");
             }
         }

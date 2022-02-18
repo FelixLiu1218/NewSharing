@@ -18,14 +18,20 @@ using static Sharing.DI;
 namespace Sharing
 {
     /// <summary>
-    /// Interaction logic for SideMenuControl.xaml
+    /// UserInfo.xaml 的互動邏輯
     /// </summary>
-    public partial class UserPanelControl : UserControl
+    public partial class TitleBar : UserControl
     {
-        public UserPanelControl()
+        public TitleBar()
         {
             InitializeComponent();
 
+            // If we are in design mode...
+            if (DesignerProperties.GetIsInDesignMode(this))
+                // Create new instance of settings view model
+                DataContext = new SettingsViewModel();
+            else
+                DataContext = ViewModelSettings;
         }
     }
 }

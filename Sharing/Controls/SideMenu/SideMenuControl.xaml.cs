@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,11 +30,11 @@ namespace Sharing
             // Set data context to settings view model
 
             // If we are in design mode...
-            // if (DesignerProperties.GetIsInDesignMode(this))
-            //     // Create new instance of settings view model
-            //     DataContext = new SideMenuViewModel();
-            // else
-            //     DataContext = ViewModelSideMenu;
+            if (DesignerProperties.GetIsInDesignMode(this))
+                // Create new instance of settings view model
+                DataContext = new SettingsViewModel();
+            else
+                DataContext = ViewModelSettings;
         }
     }
 }

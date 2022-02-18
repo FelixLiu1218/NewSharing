@@ -25,8 +25,6 @@ namespace Sharing
         /// </summary>
         public SettingsViewModel SettingsViewModel => ViewModelSettings;
 
-        //public SideMenuViewModel SideMenuViewModel => ViewModelSideMenu;
-
         #endregion
     }
 }

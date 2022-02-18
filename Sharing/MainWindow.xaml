@@ -8,14 +8,14 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         x:Name="AppWindow"
-        MinWidth="{Binding WindowMinimumWidth}"
-        MinHeight="{Binding WindowMinimumHeight}"
+        MinWidth="950"
+        MinHeight="650"
         Deactivated="AppWindow_Deactivated"
         Activated="AppWindow_Activated"
         Title="Sharing" Height="600" Width="800">
 
 
-    <Border BorderThickness=" 0 0.4 0 0">
+    <Border BorderThickness=" 0 0.4 0 0" BorderBrush="{StaticResource ForegroundDarkBrush}">
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -40,20 +40,35 @@
                         />
             </Border>
             
-            <local:PageHost Grid.Column="1" 
+            <local:PageHost Grid.Column="1"
                    CurrentPage="{Binding ApplicationViewModel.CurrentPage,
                                         Source={x:Static local:ViewModelLocator.Instance}}"
                    CurrentPageViewModel="{Binding ApplicationViewModel.CurrentPageViewModel,
                                         Source={x:Static local:ViewModelLocator.Instance}}"                            
                             />
 
-            <!-- Side Menu -->
-            <local:SideMenuControl 
-                DataContext="{Binding ApplicationViewModel, Source={x:Static local:ViewModelLocator.Instance}}"
-                Width="250" 
-                local:AnimateSlideInFromLeftProperty.Value="{Binding SideMenuVisible}"
-                Content="{Binding CurrentSideMenuContent, Converter={local:SideMenuContentConverter}}"
-                />
+            <Border BorderBrush="{StaticResource ForegroundDarkBrush}" BorderThickness="0 0 0.4 0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                
+                    <Border BorderBrush="{StaticResource ForegroundDarkBrush}" BorderThickness="0 0 0 0.4">
+                        <local:TitleBar local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.TitleBarVisible,Source={x:Static local:ViewModelLocator.Instance}}"/>
+                    </Border>
+                    <!-- Side Menu -->
+                    <local:SideMenuControl Grid.Row="1"
+                                           DataContext="{Binding ApplicationViewModel, Source={x:Static local:ViewModelLocator.Instance}}"
+                                           Width="250" 
+                                           local:AnimateSlideInFromLeftProperty.Value="{Binding SideMenuVisible}"
+                                           Content="{Binding CurrentSideMenuContent, Converter={local:SideMenuContentConverter}}"/>
+
+                </Grid>
+            </Border>
+
+
+            
 
         </Grid>
     </Border>

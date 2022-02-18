@@ -24,7 +24,10 @@ namespace Sharing
         public static SettingsViewModel ViewModelSettings => Framework.Service<SettingsViewModel>();
 
 
-        //public static SideMenuViewModel ViewModelSideMenu => Framework.Service<SideMenuViewModel>();
+        /// <summary>
+        /// A shortcut to access the <see cref="TextEntryViewModel"/>
+        /// </summary>
+        public static TextEntryViewModel ViewModelTextEntry => Framework.Service<TextEntryViewModel>();
 
         /// <summary>
         /// A shortcut to access toe <see cref="IClientDataStore"/> service

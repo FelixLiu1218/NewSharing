@@ -74,8 +74,8 @@
                     <Border HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}}"
                             VerticalAlignment="Top">
 
-                        <TextBlock Style="{StaticResource SpinningText}"
-                               Foreground="{StaticResource ForegroundLightBrush}"
+                        <TextBlock Style="{StaticResource UserIcon}"
+                               Foreground="{StaticResource  ForegroundVeryDarkBrush}"
                                Padding="20"
                                DataContext="{Binding ImageAttachment}"
                                Visibility="{Binding ImageLoaded, Converter={local:BooleanToVisiblityGoneConverter}, ConverterParameter=True, FallbackValue=Collapsed}"
@@ -91,7 +91,7 @@
                                local:ClipFromBorderProperty.Value="True"
                                local:FadeInImageOnLoadProperty.Value="True"
                                Source="{Binding LocalFilePath, NotifyOnTargetUpdated=True}"
-                               MaxWidth="600"
+                               MaxWidth="300"
                                />
 
                     </Border>
