@@ -91,7 +91,6 @@ namespace Sharing
                     {
                         Message = Message,
                         Initials = Initials,
-                        MessageSentTime = DateTime.UtcNow,
                         ProfilePictureRGB = "FF00FF",
                         SenderName = "Luke",
                         SentByMe = true,
@@ -100,7 +99,6 @@ namespace Sharing
                     {
                         Message = "A received message",
                         Initials = Initials,
-                        MessageSentTime = DateTime.UtcNow,
                         ProfilePictureRGB = "FF0000",
                         SenderName = "Parnell",
                         SentByMe = false,
@@ -109,7 +107,6 @@ namespace Sharing
                     {
                         Message = "A received message",
                         Initials = Initials,
-                        MessageSentTime = DateTime.UtcNow,
                         ProfilePictureRGB = "FF0000",
                         SenderName = "Parnell",
                         SentByMe = false,
@@ -118,7 +115,6 @@ namespace Sharing
                     {
                         Message = Message,
                         Initials = Initials,
-                        MessageSentTime = DateTime.UtcNow,
                         ProfilePictureRGB = "FF00FF",
                         SenderName = "Luke",
                         SentByMe = true,
@@ -127,7 +123,6 @@ namespace Sharing
                     {
                         Message = "A received message",
                         Initials = Initials,
-                        MessageSentTime = DateTime.UtcNow,
                         ProfilePictureRGB = "FF0000",
                         SenderName = "Parnell",
                         SentByMe = false,
@@ -140,7 +135,6 @@ namespace Sharing
                             ThumbnailUrl = "http://anywhere"
                         },
                         Initials = Initials,
-                        MessageSentTime = DateTime.UtcNow,
                         ProfilePictureRGB = "FF0000",
                         SenderName = "Parnell",
                         SentByMe = false,

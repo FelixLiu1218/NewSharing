@@ -10,80 +10,86 @@
       d:DesignHeight="700" d:DesignWidth="700"
       >
 
-    <Border>
         <Grid>
-
-            <!-- Main content scroll -->
+            <Image Source="../Images/Samples/light-gray-background.jpg" Stretch="UniformToFill" />
+        <!-- Main content scroll -->
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel 
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     TextBlock.TextAlignment="Center">
 
-                    <!-- Login main content white box -->
-                    <Border Background="{StaticResource ForegroundLightBrush}" 
-                            CornerRadius="10"
-                            Padding="15 50 15 15"
-                            Width="330"
-                            Margin="50 50 50 0">
+                <Grid  Width="375" Margin="0 35 0 0">
+                        <!-- Login main content white box -->
 
-                        <StackPanel>
+                        <StackPanel Margin="50 20 50 5">
 
-                            <!-- Sign Up header -->
+                        <Image Source="../Images/Samples/userIcon.png" 
+                               
+                               MaxWidth="100" Margin=" 0 -100 0 0" />
+
+                        <!-- Sign Up header -->
                             <TextBlock Text="Sign Up" 
-                                   FontSize="{StaticResource FontSizeXXXXLarge}" 
-                                   FontFamily="{StaticResource Arial}"
-                                   Foreground="{StaticResource WordBlueBrush}" />
+                                       FontSize="{StaticResource FontSizeXXXXLarge}" 
+                                       FontFamily="{StaticResource Arial}"
+                                       Foreground="{StaticResource WordBlueBrush}" />
 
                             <TextBlock Text="UserName" Margin="0 20 0 0"
-                                       FontSize="{StaticResource FontSizeLarge}"
-                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
+                                           FontSize="{StaticResource FontSizeLarge}"
+                                           Foreground="{StaticResource ForegroundDarkBrush}"/>
 
                             <!-- Username -->
                             <TextBox 
-                                Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                                local:IsFocusedProperty.Value="True"
-                                Style="{StaticResource EmailTextBox}"
-                                Tag="Username" />
+                                    Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                                    local:IsFocusedProperty.Value="True"
+                                    Style="{StaticResource EmailTextBox}"
+                                    Tag="Username" />
 
                             <TextBlock Text="Email Address" Margin="0 20 0 0"
-                                       FontSize="{StaticResource FontSizeLarge}"
-                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
+                                           FontSize="{StaticResource FontSizeLarge}"
+                                           Foreground="{StaticResource ForegroundDarkBrush}"/>
 
                             <!-- Email -->
                             <TextBox 
-                                Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
-                                Style="{StaticResource EmailTextBox}"
-                                Tag="Email" />
+                                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" 
+                                    Style="{StaticResource EmailTextBox}"
+                                    Tag="Email" />
 
                             <TextBlock Text="Password" Margin="0 20 0 0"
-                                       FontSize="{StaticResource FontSizeLarge}"
-                                       Foreground="{StaticResource ForegroundDarkBrush}"/>
+                                           FontSize="{StaticResource FontSizeLarge}"
+                                           Foreground="{StaticResource ForegroundDarkBrush}"/>
 
                             <!-- Password -->
                             <PasswordBox x:Name="PasswordText"/>
 
-                            <!-- Next button -->
+                            <!-- Register button -->
                             <Button Content="Register" 
-                                    IsDefault="True"
-                                    local:IsBusyProperty.Value="{Binding RegisterIsRunning}"
-                                    Command="{Binding RegisterCommand}"
-                                    CommandParameter="{Binding ElementName=Page}" 
-                                    HorizontalAlignment="Center" />
+                                        IsDefault="True"
+                                        local:IsBusyProperty.Value="{Binding RegisterIsRunning}"
+                                        Command="{Binding RegisterCommand}"
+                                        CommandParameter="{Binding ElementName=Page}" 
+                                        Cursor="Hand"
+                                        HorizontalAlignment="Center" />
 
+                            <Button 
+                                    Style="{StaticResource TextButton}" 
+                                    Foreground="{StaticResource ForegroundVeryDarkBrush}"
+                                    Content="I already have an account" 
+                                    HorizontalAlignment="Center"
+                                    Cursor="Hand"
+                                    Command="{Binding LoginCommand}"
+                                />
                         </StackPanel>
 
-                    </Border>
+                        <Border Background="{StaticResource  ForegroundLightBrush}" Panel.ZIndex="-1" CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="30" ShadowDepth="0" Color="{StaticResource  WordLightBlue}" />
+                            </Border.Effect>
 
-                    <Button 
-                        Style="{StaticResource TextButton}" 
-                        Content="I already have an account" 
-                        HorizontalAlignment="Center" 
-                        Command="{Binding LoginCommand}"
-                        />
-
+                        </Border>
+                </Grid>
+                    
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-    </Border>
 </local:BasePage>

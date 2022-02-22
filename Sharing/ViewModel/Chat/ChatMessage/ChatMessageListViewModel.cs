@@ -238,7 +238,6 @@ namespace Sharing
             {
                 Initials = "LM",
                 Message = PendingMessageText,
-                MessageSentTime = DateTime.UtcNow,
                 SentByMe = true,
                 SenderName = "Luke Malpass",
                 NewItem = true

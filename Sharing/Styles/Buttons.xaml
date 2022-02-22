@@ -14,11 +14,11 @@
     <!-- LoginSubmitButton Style -->
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
 
-        <Setter Property="Background" Value="{StaticResource WordOrangeBrush}" />
+        <Setter Property="Background" Value="{StaticResource WordBlueBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
-        <Setter Property="Padding" Value="50 10" />
+        <Setter Property="Padding" Value="35 10" />
         <Setter Property="Margin" Value="0 10" />
 
         <Setter Property="local:IsBusyProperty.Value" Value="False"/>
@@ -54,14 +54,15 @@
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation To="{StaticResource WordBlue}" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
+                                    <ColorAnimation To="{StaticResource ForegroundLight}" Duration="0:0:0.5" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
+                                    <ColorAnimation To="{StaticResource WordBlue}" Duration="0:0:0.8" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation To="{StaticResource WordOrange}" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
+                                    <ColorAnimation To="{StaticResource WordBlue}" Duration="0:0:0.3" Storyboard.TargetName="border" Storyboard.TargetProperty="Background.Color"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

@@ -92,6 +92,8 @@
 
                     <Button Content="{Binding LogoutButtonText}"
                             Command="{Binding LogoutCommand}"
+                            Margin="0 20 0 0"
+                            HorizontalAlignment="Center"
                     />
 
                 </StackPanel>

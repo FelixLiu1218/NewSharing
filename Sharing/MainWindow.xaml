@@ -9,13 +9,15 @@
         WindowStartupLocation="CenterScreen"
         x:Name="AppWindow"
         MinWidth="950"
-        MinHeight="650"
+        MinHeight="750"
         Deactivated="AppWindow_Deactivated"
         Activated="AppWindow_Activated"
         Title="Sharing" Height="600" Width="800">
 
 
     <Border BorderThickness=" 0 0.4 0 0" BorderBrush="{StaticResource ForegroundDarkBrush}">
+
+
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -66,10 +68,6 @@
 
                 </Grid>
             </Border>
-
-
-            
-
         </Grid>
     </Border>
 

@@ -19,5 +19,7 @@
         /// The register page
         /// </summary>
         Register = 2,
+
+
     }
 }

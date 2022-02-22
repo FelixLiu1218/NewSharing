@@ -20,7 +20,7 @@ namespace Sharing
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : BasePage<LoginViewModel>, IHavePassword
+    public partial class LoginPage : BasePage<LoginViewModel>, IHavePassword 
     {
         #region Constructor
 

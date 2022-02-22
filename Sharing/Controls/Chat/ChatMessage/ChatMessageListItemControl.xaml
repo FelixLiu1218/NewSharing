@@ -35,28 +35,6 @@
             <Grid Margin="40 0 15 0"
                   HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}}">
 
-                <Grid.Triggers>
-
-                    <!-- Mouse over shows time -->
-                    <EventTrigger RoutedEvent="MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard Storyboard.TargetName="ExtraDetails" Storyboard.TargetProperty="Opacity">
-                                <DoubleAnimation To="1" Duration="00:00:00.5" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-
-                    <!-- Mouse leave hides time -->
-                    <EventTrigger RoutedEvent="MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard Storyboard.TargetName="ExtraDetails" Storyboard.TargetProperty="Opacity">
-                                <DoubleAnimation To="0" Duration="00:00:00.5" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-
-                </Grid.Triggers>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -137,29 +115,6 @@
                               HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}}"
                               Fill="{Binding SentByMe, Converter={local:SentByMeToBackgroundConverter}}" Grid.RowSpan="2" />
 
-                        <!-- Time containers -->
-                        <StackPanel Name="ExtraDetails" 
-                            Grid.Row="1"
-                            Opacity="0"
-                            HorizontalAlignment="Left"
-                            Orientation="Horizontal" Margin="0,9,0,0" Grid.RowSpan="2">
-
-                            <!-- Sent time -->
-                            <TextBlock Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}"
-                               Foreground="{StaticResource ForegroundLightBrush}"
-                               FontSize="{StaticResource FontSizeSmall}"
-                               FontFamily="{StaticResource Arial}"
-                               Margin="0 0 15 0"
-                           />
-
-                            <!-- Read time -->
-                            <TextBlock Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}"
-                               Foreground="{StaticResource WordDarkBlueBrush}"
-                               FontSize="{StaticResource FontSizeSmall}"
-                               FontFamily="{StaticResource Arial}"
-                           />
-
-                        </StackPanel>
 
                     </Grid>
 

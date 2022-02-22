@@ -22,7 +22,7 @@
         public MessageBoxDialogDesignModel()
         {
             OkText = "OK";
-            Message = "Design time messages are fun :)";
+            Message = "Design time messages";
         }
 
         #endregion

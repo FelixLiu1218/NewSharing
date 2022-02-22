@@ -10,28 +10,26 @@
       d:DesignHeight="700" d:DesignWidth="700"
       >
 
-    <Border>
         <Grid>
-
-            <!-- Main content scroll -->
+            <Image Source="../Images/Samples/light-gray-background.jpg"  Stretch="UniformToFill"/>
+        <!-- Main content scroll -->
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                
                 <StackPanel 
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    TextBlock.TextAlignment="Center">
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                TextBlock.TextAlignment="Center">
 
-                    <!-- Login main content white box -->
-                    <Border Background="{StaticResource ForegroundLightBrush}" 
-                            CornerRadius="10"
-                            Padding="15 50 15 15"
-                            Width="330"
-                            Margin="50 50 50 0">
+                    <Grid Width="375">
 
-                        <StackPanel>
+                        <Image Source="../Images/Samples/userIcon.png" 
+                               SnapsToDevicePixels="True"
+                               MaxWidth="100" Margin=" 0 -450 0 0" />
+                        <StackPanel Margin="50 20 50 5">
 
                             <!-- Sign Up header -->
                             <TextBlock Text="Sign In" 
-                                   FontSize="{StaticResource FontSizeXXLarge}" 
+                                   FontSize="{StaticResource FontSizeXXXXLarge}" 
                                    FontFamily="{StaticResource Arial}"
                                    Foreground="{StaticResource WordBlueBrush}" />
 
@@ -53,28 +51,32 @@
                             <!-- Password -->
                             <PasswordBox x:Name="PasswordText" />
 
-                            <TextBlock Text="8-16文字を入力してください"
-                                       Foreground="{StaticResource ForegroundDarkBrush}" />
-
                             <!-- Login button -->
                             <Button Content="Login" 
                                     IsDefault="True"
                                     local:IsBusyProperty.Value="{Binding LoginIsRunning}"
                                     Command="{Binding LoginCommand}"
                                     CommandParameter="{Binding ElementName=Page}" 
+                                    Cursor="Hand"
                                     HorizontalAlignment="Center" />
 
+                            <Button Style="{StaticResource TextButton}" 
+                                    Foreground="{StaticResource ForegroundVeryDarkBrush}"
+                                    Command="{Binding RegisterCommand}"
+                                    Content="Create an account" 
+                                    Cursor="Hand"
+                                    HorizontalAlignment="Center" />
                         </StackPanel>
-
-                    </Border>
-
-                    <Button Style="{StaticResource TextButton}" 
-                            Command="{Binding RegisterCommand}"
-                            Content="Create an account" 
-                            HorizontalAlignment="Center" />
-
+                
+                        <!-- Login main content white box -->
+                        <Border Background="{StaticResource  ForegroundLightBrush}" Panel.ZIndex="-1" CornerRadius="20">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="30" ShadowDepth="0" Color="{StaticResource  WordLightBlue}" />
+                            </Border.Effect>
+                        </Border>
+                    </Grid>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-    </Border>
+
 </local:BasePage>

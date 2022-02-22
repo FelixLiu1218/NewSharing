@@ -28,8 +28,6 @@ namespace Sharing
             Message = "Some design time visual text";
             ProfilePictureRGB = "3099c5";
             SentByMe = true;
-            MessageSentTime = DateTimeOffset.UtcNow;
-            MessageReadTime = DateTimeOffset.UtcNow.Subtract(TimeSpan.FromDays(1.3));
         }
 
         #endregion

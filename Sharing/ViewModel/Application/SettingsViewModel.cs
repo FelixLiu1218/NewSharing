@@ -235,21 +235,15 @@ namespace Sharing
         /// </summary>
         public async Task LogoutAsync()
         {
-            // Lock this command to ignore any other requests while processing
-            await RunCommandAsync(() => LoggingOut, async () =>
-            {
-                // TODO: Confirm the user wants to logout
+            // Clear any user data/cache
+            await ClientDataStore.ClearAllLoginCredentialsAsync();
 
-                // Clear any user data/cache
-                await ClientDataStore.ClearAllLoginCredentialsAsync();
+            // Clean all application level view models that contain
+            // any information about the current user
+            ClearUserData();
 
-                // Clean all application level view models that contain
-                // any information about the current user
-                ClearUserData();
-
-                // Go to login page
-                ViewModelApplication.GoToPage(ApplicationPage.Login);
-            });
+            // Go to login page
+            ViewModelApplication.GoToPage(ApplicationPage.Login);
         }
 
         /// <summary>
