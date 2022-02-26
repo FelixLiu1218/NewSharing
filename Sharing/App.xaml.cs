@@ -79,8 +79,8 @@ namespace Sharing
         {
             // Create a new endpoint watcher
             var httpWatcher = new HttpEndpointChecker(
-                // Checking fasetto.chat
-                Configuration["FasettoWordServer:HostUrl"],
+                // Checking Server
+                Configuration["Server:HostUrl"],
                 // Every 20 seconds
                 interval: 20000,
                 // Pass in the DI logger

@@ -25,7 +25,7 @@
                     Style="{StaticResource IconGrowButton}"
                     Content="{StaticResource FontAwesomeClose}"
                     FontSize="{StaticResource FontSizeXXXXLarge}"
-                    Command="{Binding CloseCommand}"
+                    Command="{Binding CloseSettingsCommand}"
                     HorizontalAlignment="Right"/>
 
                 <!-- Settings header -->
@@ -74,7 +74,7 @@
                             <VisualBrush Visual="{Binding ElementName=Mask}" />
                         </Grid.OpacityMask>
                         
-                        <Image Source="/Images/Samples/rusty.jpg" Stretch="UniformToFill" />
+                        <Image Source="/Images/Samples/test.jpg" Stretch="UniformToFill" />
                     </Grid>
 
                 </Grid>

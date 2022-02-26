@@ -11,6 +11,12 @@ namespace Sharing.Relational
     /// </summary>
     public class BaseClientDataStore : IClientDataStore
     {
+        #region SQL syntax
+
+        
+
+        #endregion
+
         #region Protected Members
 
         /// <summary>

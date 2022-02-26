@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Sharing"
-             d:DataContext="{x:Static local:SettingsDesignModel.Instance}"
              mc:Ignorable="d" >
     <Grid>
             <Grid.RowDefinitions>
@@ -30,27 +29,26 @@
                                     Style="{StaticResource IconGrowSideMenuButton}" 
                                     Content="{StaticResource FontAwesomeUser}"
                                     Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
-                                    Command="{Binding OpenChatCommand}"
-                                    />
+                    />
 
                     <Button
                                     Style="{StaticResource IconGrowSideMenuButton}" 
                                     Content="{StaticResource FontAwesomeUsers}" 
                                     Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
-                                    Command="{Binding OpenContactsCommand}"
-                                    />
+                    />
 
                     <Button 
-                                    Style="{StaticResource IconGrowSideMenuButton}"  
+                        DataContext="{Binding ViewModelMd}"
+                        Style="{StaticResource IconGrowSideMenuButton}"  
                                     Content="{StaticResource FontAwesomeUsers}" 
                                     Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
-                                    Command="{Binding OpenMediaCommand}"
+                                    Command="{Binding SettingsViewModel.OpenMdCommand,Source={x:Static local:ViewModelLocator.Instance}}"
                                     />
                 </StackPanel>
 
                 <!-- Settings button -->
                 <Button Grid.Column="2"
-                                    Command="{Binding SettingsViewModel.OpenCommand, Source={x:Static local:ViewModelLocator.Instance}}"
+                        Command="{Binding SettingsViewModel.OpenSettingsCommand, Source={x:Static local:ViewModelLocator.Instance}}"
                                     Style="{StaticResource IconGrowSideMenuButton}" 
                                     Content="{StaticResource FontAwesomeSettingIcon}"
                                     Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"/>

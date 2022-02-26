@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -15,8 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Markdig;
+using static Sharing.DI;
 
-namespace Sharing.Controls
+namespace Sharing
 {
     /// <summary>
     /// MarkDownPage.xaml 的互動邏輯
@@ -27,24 +29,20 @@ namespace Sharing.Controls
         {
             InitializeComponent();
 
-            CreateHtml();
+            // If we are in design mode...
+            if (DesignerProperties.GetIsInDesignMode(this))
+                // Create new instance of settings view model
+                DataContext = new SettingsViewModel();
+            else
+                DataContext = ViewModelSettings;
         }
 
-        private void CreateHtml()
-        {
-            var pipeline = new MarkdownPipelineBuilder()
-                .UseAdvancedExtensions()
-                .Build();
-
-            var sourceText = Properties.Resources.MarkDown;
-            var markdownText = Markdig.Markdown.ToHtml(sourceText, pipeline);
-            const string ouputPath = "result.html";
-            File.WriteAllText(ouputPath, markdownText);
-        }
 
         private void CommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo("cmd", $"/c start {e.Parameter}") { CreateNoWindow = true });
         }
+
+        
     }
 }

@@ -48,7 +48,7 @@ namespace Sharing
                 // Update value
                 mThumbnailUrl = value;
 
-                Task.Delay(2000).ContinueWith(t => LocalFilePath = "/Images/Samples/rusty.jpg");
+                Task.Delay(2000).ContinueWith(t => LocalFilePath = "/Images/Samples/test.jpg");
             }
         }
 

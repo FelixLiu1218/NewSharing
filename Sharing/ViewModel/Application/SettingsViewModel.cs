@@ -102,12 +102,22 @@ namespace Sharing
         /// <summary>
         /// The command to open the settings menu
         /// </summary>
-        public ICommand OpenCommand { get; set; }
+        public ICommand OpenSettingsCommand { get; set; }
+
+        /// <summary>
+        /// The command to open the settings menu
+        /// </summary>
+        public ICommand OpenMdCommand { get; set; }
 
         /// <summary>
         /// The command to close the settings menu
         /// </summary>
-        public ICommand CloseCommand { get; set; }
+        public ICommand CloseSettingsCommand { get; set; }
+
+        /// <summary>
+        /// The command to close the settings menu
+        /// </summary>
+        public ICommand CloseMdCommand { get; set; }
 
         /// <summary>
         /// The command to logout of the application
@@ -194,8 +204,10 @@ namespace Sharing
             };
 
             // Create commands
-            OpenCommand = new RelayCommand(Open);
-            CloseCommand = new RelayCommand(Close);
+            OpenMdCommand = new RelayCommand(OpenMd);
+            OpenSettingsCommand = new RelayCommand(OpenSettings);
+            CloseSettingsCommand = new RelayCommand(CloseSettings);
+            CloseMdCommand = new RelayCommand(CloseMd);
             LogoutCommand = new RelayCommand(async () => await LogoutAsync());
             ClearUserDataCommand = new RelayCommand(ClearUserData);
             LoadCommand = new RelayCommand(async () => await LoadAsync());
@@ -215,16 +227,34 @@ namespace Sharing
         /// <summary>
         /// Open the settings menu
         /// </summary>
-        public void Open()
+        public void OpenSettings()
         {
-            // Close settings menu
+            // open settings menu
             ViewModelApplication.SettingsMenuVisible = true;
+        }
+
+        /// <summary>
+        /// Open the settings menu
+        /// </summary>
+        public void OpenMd()
+        {
+            // open settings menu
+            ViewModelApplication.MdPageVisible = true;
         }
 
         /// <summary>
         /// Closes the settings menu
         /// </summary>
-        public void Close()
+        public void CloseMd()
+        {
+            // Close settings menu
+            ViewModelApplication.MdPageVisible = false;
+        }
+
+        /// <summary>
+        /// Closes the settings menu
+        /// </summary>
+        public void CloseSettings()
         {
             // Close settings menu
             ViewModelApplication.SettingsMenuVisible = false;

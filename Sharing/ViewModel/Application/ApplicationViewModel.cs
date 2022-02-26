@@ -18,6 +18,11 @@ namespace Sharing
         /// </summary>
         private bool mSettingsMenuVisible;
 
+        /// <summary>
+        /// True if the settings menu should be shown
+        /// </summary>
+        private bool mMdPageVisible;
+
         #endregion
 
         #region Public Properties
@@ -66,34 +71,30 @@ namespace Sharing
             }
         }
 
+        public bool MdPageVisible
+        {
+            get => mMdPageVisible;
+            set
+            {
+                if (mMdPageVisible == value)
+                    // Ignore
+                    return;
+
+
+                // Set the backing field
+                mMdPageVisible = value;
+            }
+        }
+
         /// <summary>
         /// Determines the currently visible side menu content
         /// </summary>
         public SideMenuContent CurrentSideMenuContent { get; set; } = SideMenuContent.Chat;
 
         /// <summary>
-        /// Determines if the application has network access to the fasetto server
+        /// Determines if the application has network access to the server
         /// </summary>
         public bool ServerReachable { get; set; } = true;
-
-        #endregion
-
-        #region Public Commands
-
-        /// <summary>
-        /// The command to change the side menu to the Chat
-        /// </summary>
-        public ICommand OpenChatCommand { get; set; }
-
-        /// <summary>
-        /// The command to change the side menu to the Contacts
-        /// </summary>
-        public ICommand OpenContactsCommand { get; set; }
-
-        /// <summary>
-        /// The command to change the side menu to Media
-        /// </summary>
-        public ICommand OpenMediaCommand { get; set; }
 
         #endregion
 
@@ -104,44 +105,11 @@ namespace Sharing
         /// </summary>
         public ApplicationViewModel()
         {
-            // Create the commands
-            OpenChatCommand = new RelayCommand(OpenChat);
-            OpenContactsCommand = new RelayCommand(OpenContacts);
-            OpenMediaCommand = new RelayCommand(OpenMedia);
+
         }
 
         #endregion
 
-        #region Command Methods
-
-        /// <summary>
-        /// Changes the current side menu to the Chat
-        /// </summary>
-        public void OpenChat()
-        {
-            // Set the current side menu to Chat
-            CurrentSideMenuContent = SideMenuContent.Chat;
-        }
-
-        /// <summary>
-        /// Changes the current side menu to the Contacts
-        /// </summary>
-        public void OpenContacts()
-        {
-            // Set the current side menu to Chat
-            CurrentSideMenuContent = SideMenuContent.Contacts;
-        }
-
-        /// <summary>
-        /// Changes the current side menu to Media
-        /// </summary>
-        public void OpenMedia()
-        {
-            // Set the current side menu to Chat
-            CurrentSideMenuContent = SideMenuContent.Media;
-        }
-
-        #endregion
 
         #region Public Helper Methods
 
@@ -154,6 +122,8 @@ namespace Sharing
         {
             // Always hide settings page if we are changing pages
             SettingsMenuVisible = false;
+
+            MdPageVisible = false;
 
             // Set the view model
             CurrentPageViewModel = viewModel;

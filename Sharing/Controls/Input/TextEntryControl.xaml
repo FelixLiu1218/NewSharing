@@ -63,6 +63,7 @@
 
             <!-- Edit Content -->
             <TextBox Text="{Binding EditedText, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource TextEntry}"
                      Grid.Column="1"
                      Opacity="0"
                      local:AnimateFadeInProperty.Value="{Binding Editing}"

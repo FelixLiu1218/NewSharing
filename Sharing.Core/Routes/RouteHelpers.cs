@@ -15,7 +15,7 @@ namespace Sharing.Core
         public static string GetAbsoluteRoute(string relativeUrl)
         {
             // Get the host
-            var host = Configuration["FasettoWordServer:HostUrl"];
+            var host = Configuration["Server:HostUrl"];
 
             // If they are not passing any URL...
             if (string.IsNullOrEmpty(relativeUrl))
@@ -28,7 +28,7 @@ namespace Sharing.Core
                 relativeUrl = $"/{relativeUrl}";
 
             // Return combined URL
-            return Configuration["FasettoWordServer:HostUrl"] + relativeUrl;
+            return Configuration["Server:HostUrl"] + relativeUrl;
         }
     }
 }

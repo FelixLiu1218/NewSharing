@@ -43,6 +43,15 @@
         </Setter>
     </Style>
 
+    <!-- Textbox without border -->
+    <Style x:Key="TextInput" TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="BorderBrush" Value="{StaticResource ForegroundVeryDarkBrush}" />
+        <Setter Property="BorderThickness" Value="0 0 0.7 0" />
+
+        <Setter Property="Background" Value="{StaticResource ForegroundLightBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
+    </Style>
+
     <!-- Email TextBox -->
     <Style x:Key="EmailTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
         <Setter Property="BorderBrush" Value="{StaticResource WordBlueBrush}" />

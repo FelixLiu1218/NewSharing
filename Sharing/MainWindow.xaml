@@ -19,19 +19,22 @@
 
 
         <Grid>
-
+        
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-
-
+        
+        
+        
             <!-- Settings page -->
             <local:SettingsControl Grid.ColumnSpan="2"
                                    Panel.ZIndex="9"
                                    local:AnimateSlideInFromBottomMarginProperty.Value="{Binding ApplicationViewModel.SettingsMenuVisible, Source={x:Static local:ViewModelLocator.Instance}}"
                                    />
+
+            <!-- MarkDown page -->
+            <local:MarkDownPage Grid.ColumnSpan="2" Panel.ZIndex="9"  local:AnimateSlideInFromBottomMarginProperty.Value="{Binding ApplicationViewModel.MdPageVisible, Source={x:Static local:ViewModelLocator.Instance}}"/>
 
             <!-- Dimmed overlay -->
             <Border Grid.ColumnSpan="2"
@@ -41,31 +44,31 @@
                         local:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}"
                         />
             </Border>
-            
+        
             <local:PageHost Grid.Column="1"
                    CurrentPage="{Binding ApplicationViewModel.CurrentPage,
                                         Source={x:Static local:ViewModelLocator.Instance}}"
                    CurrentPageViewModel="{Binding ApplicationViewModel.CurrentPageViewModel,
-                                        Source={x:Static local:ViewModelLocator.Instance}}"                            
+                                        Source={x:Static local:ViewModelLocator.Instance}}"
                             />
-
+        
             <Border BorderBrush="{StaticResource ForegroundDarkBrush}" BorderThickness="0 0 0.4 0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                
+        
                     <Border BorderBrush="{StaticResource ForegroundDarkBrush}" BorderThickness="0 0 0 0.4">
                         <local:TitleBar local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.TitleBarVisible,Source={x:Static local:ViewModelLocator.Instance}}"/>
                     </Border>
                     <!-- Side Menu -->
                     <local:SideMenuControl Grid.Row="1"
                                            DataContext="{Binding ApplicationViewModel, Source={x:Static local:ViewModelLocator.Instance}}"
-                                           Width="250" 
+                                           Width="250"
                                            local:AnimateSlideInFromLeftProperty.Value="{Binding SideMenuVisible}"
                                            Content="{Binding CurrentSideMenuContent, Converter={local:SideMenuContentConverter}}"/>
-
+        
                 </Grid>
             </Border>
         </Grid>
